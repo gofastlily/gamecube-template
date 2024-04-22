@@ -51,10 +51,10 @@ void Framerate::Calculate() {
 
 void Framerate::Display() {
 	if (m_show) {
-		m_grr_state.Use2dMode();
+		// m_grr_state.Use2dMode();
 		// TODO: X and Y position should be variable
 		GRRLIB_Printf(x_position, y_position, m_font, m_color, 1, FPS_STRING, m_framerate);
-		m_grr_state.UsePreviousMode();
+		// m_grr_state.UsePreviousMode();
 	}
 }
 
