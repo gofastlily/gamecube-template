@@ -1,5 +1,4 @@
-#ifndef UTILS_FONTS_HPP
-#define UTILS_FONTS_HPP 1
+#pragma once
 
 
 // Library includes
@@ -26,6 +25,3 @@ class Fonts {
 
 
 }
-
-
-#endif  // UTILS_FONTS_HPP

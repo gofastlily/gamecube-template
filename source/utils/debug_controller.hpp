@@ -1,5 +1,4 @@
-#ifndef UTILS_DEBUG_CONTROLLER_HPP
-#define UTILS_DEBUG_CONTROLLER_HPP 1
+#pragma once
 
 
 // Library includes
@@ -45,6 +44,3 @@ class DebugController {
 
 
 }  // namespace game
-
-
-#endif  // UTILS_DEBUG_CONTROLLER_HPP

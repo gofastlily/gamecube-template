@@ -1,5 +1,4 @@
-#ifndef UTILS_FRAMERATE_HPP
-#define UTILS_FRAMERATE_HPP 1
+#pragma once
 
 
 // Library includes
@@ -35,6 +34,3 @@ class Framerate {
 
 
 }  // namespace game
-
-
-#endif  // UTILS_FRAMERATE_HPP

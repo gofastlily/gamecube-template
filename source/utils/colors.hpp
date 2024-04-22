@@ -1,5 +1,4 @@
-#ifndef UTILS_COLORS_HPP
-#define UTILS_COLORS_HPP 1
+#pragma once
 
 
 /**
@@ -26,6 +25,3 @@
 #define GRRLIB_FUCHSIA 0xFF00FFFF
 #define GRRLIB_AQUA    0x00FFFFFF
 #define GRRLIB_WHITE   0xFFFFFFFF
-
-
-#endif  // UTILS_COLORS_HPP

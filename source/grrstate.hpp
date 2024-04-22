@@ -1,5 +1,4 @@
-#ifndef UTILS_GRRSTATE_HPP
-#define UTILS_GRRSTATE_HPP 1
+#pragma once
 
 
 namespace game {
@@ -20,6 +19,3 @@ class GRRState {
 
 
 }  // namespace game
-
-
-#endif  // UTILS_GRRSTATE_HPP
