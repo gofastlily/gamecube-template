@@ -1,0 +1,7 @@
+{
+    "editor.indentSize": "tabSize",
+    "[cpp]": {
+        "editor.insertSpaces": false,
+        "editor.tabSize": 4
+    }
+}

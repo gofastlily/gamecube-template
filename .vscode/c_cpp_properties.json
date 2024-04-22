@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "macOS - GameCube",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/devkitpro/devkitPPC/include/**",
+                "/opt/devkitpro/devkitPPC/powerpc-eabi/include/**",
+                "/opt/devkitpro/libogc/include/**",
+                "/opt/devkitpro/portlibs/gamecube/include/**"
+            ],
+            "defines": [
+                "HW_DOL"
+            ],
+            "macFrameworkPath": [
+                "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
+            ],
+            "compilerPath": "/opt/devkitpro/devkitPPC/bin/powerpc-eabi-gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "macos-gcc-arm64"
+        }
+    ],
+    "version": 4
+}
