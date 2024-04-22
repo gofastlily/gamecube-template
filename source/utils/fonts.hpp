@@ -24,4 +24,4 @@ class Fonts {
 };
 
 
-}
+}   // namespace game

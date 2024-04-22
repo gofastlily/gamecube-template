@@ -43,4 +43,4 @@ class DebugController {
 };
 
 
-}  // namespace game
+}	// namespace game

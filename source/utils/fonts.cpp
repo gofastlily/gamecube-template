@@ -16,4 +16,4 @@ Fonts::Fonts() {
 }
 
 
-}
+}	// namespace game

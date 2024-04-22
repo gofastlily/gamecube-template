@@ -18,4 +18,4 @@ class GRRState {
 };
 
 
-}  // namespace game
+}	// namespace game

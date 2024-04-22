@@ -112,4 +112,4 @@ void DebugController::ToggleShowHide() {
 }
 
 
-}  // namespace game
+}	// namespace game

@@ -33,4 +33,4 @@ class Framerate {
 };
 
 
-}  // namespace game
+}	// namespace game

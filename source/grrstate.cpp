@@ -52,4 +52,4 @@ void GRRState::Set3dMode() {
 }
 
 
-}  // namespace game
+}	// namespace game
