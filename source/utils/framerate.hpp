@@ -23,8 +23,8 @@ class Framerate {
 		void Calculate();
 		void Display();
 		void ToggleShowHide();
-		f32 x_position = 500;
-		f32 y_position = 27;
+		f32 x_position = 500.0f;
+		f32 y_position = 27.0f;
 	private:
 		unsigned int m_color;
 		GRRLIB_texImg* m_font;

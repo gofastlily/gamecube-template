@@ -48,7 +48,7 @@ void GRRState::Set2dMode() {
 
 void GRRState::Set3dMode() {
 	// TODO: extract to config
-	GRRLIB_3dMode(0.1, 1000, 45, 0, 0);
+	GRRLIB_3dMode(0.1f, 1000.0f, 45.0f, 0, 0);
 }
 
 

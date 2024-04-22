@@ -43,9 +43,9 @@ int main(int argc, char **argv) {
 	game::Framerate framerate = game::Framerate(grr_state, fonts.grrlib_font_5);
 	game::DebugController debug_controller = game::DebugController(true);
 
-	int deadzone = 3;
-	int deadzone_stick_left = deadzone;
-	int deadzone_stick_right = deadzone;
+	u8 deadzone = 3;
+	u8 deadzone_stick_left = deadzone;
+	u8 deadzone_stick_right = deadzone;
 
 
 	///////////////
@@ -74,30 +74,30 @@ int main(int argc, char **argv) {
 
 		if (stick_left_x > deadzone_stick_left
 		|| stick_left_x < -deadzone_stick_left) {
-			debug_controller.stick_left_x_offset = stick_left_x / 10.0;
+			debug_controller.stick_left_x_offset = stick_left_x / 10.0f;
 		} else {
-			debug_controller.stick_left_x_offset = 0;
+			debug_controller.stick_left_x_offset = 0.0f;
 		}
 
 		if (stick_left_y > deadzone_stick_left
 		|| stick_left_y < -deadzone_stick_left) {
-			debug_controller.stick_left_y_offset = -stick_left_y / 10.0;
+			debug_controller.stick_left_y_offset = -stick_left_y / 10.0f;
 		} else {
-			debug_controller.stick_left_y_offset = 0;
+			debug_controller.stick_left_y_offset = 0.0f;
 		}
 
 		if (stick_right_x > deadzone_stick_right
 		|| stick_right_x < -deadzone_stick_right) {
-			debug_controller.stick_right_x_offset = stick_right_x / 10.0;
+			debug_controller.stick_right_x_offset = stick_right_x / 10.0f;
 		} else {
-			debug_controller.stick_right_x_offset = 0;
+			debug_controller.stick_right_x_offset = 0.0f;
 		}
 
 		if (stick_right_y > deadzone_stick_right
 		|| stick_right_y < -deadzone_stick_right) {
-			debug_controller.stick_right_y_offset = -stick_right_y / 10.0;
+			debug_controller.stick_right_y_offset = -stick_right_y / 10.0f;
 		} else {
-			debug_controller.stick_right_y_offset = 0;
+			debug_controller.stick_right_y_offset = 0.0f;
 		}
 
 		grr_state.Use2dMode();

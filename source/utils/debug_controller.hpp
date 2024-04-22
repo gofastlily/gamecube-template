@@ -15,10 +15,10 @@ class DebugController {
 		void Display();
 		void Init();
 		void ToggleShowHide();
-		f32 stick_left_x_offset = 0;
-		f32 stick_left_y_offset = 0;
-		f32 stick_right_x_offset = 0;
-		f32 stick_right_y_offset = 0;
+		f32 stick_left_x_offset = 0.0f;
+		f32 stick_left_y_offset = 0.0f;
+		f32 stick_right_x_offset = 0.0f;
+		f32 stick_right_y_offset = 0.0f;
 	private:
 		bool m_show;
 		GRRLIB_texImg* m_debug_controller_logo;
@@ -37,10 +37,10 @@ class DebugController {
 		GRRLIB_texImg* m_debug_controller_direction_right;
 		GRRLIB_texImg* m_debug_controller_stick_left;
 		GRRLIB_texImg* m_debug_controller_stick_right;
-		f32 stick_left_x_position = 17;
-		f32 stick_left_y_position = 94;
-		f32 stick_right_x_position = 154;
-		f32 stick_right_y_position = 163;
+		f32 stick_left_x_position = 17.0f;
+		f32 stick_left_y_position = 94.0f;
+		f32 stick_right_x_position = 154.0f;
+		f32 stick_right_y_position = 163.0f;
 };
 
 
