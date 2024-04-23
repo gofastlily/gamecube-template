@@ -9,6 +9,9 @@
                 "/opt/devkitpro/libogc/include/**",
                 "/opt/devkitpro/portlibs/gamecube/include/**"
             ],
+            "forcedInclude": [
+                "${workspaceFolder}/.vscode/vscode-preinclude.h"
+            ],
             "defines": [
                 "HW_DOL"
             ],
