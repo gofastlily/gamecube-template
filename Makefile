@@ -17,9 +17,9 @@ include $(DEVKITPPC)/gamecube_rules
 #---------------------------------------------------------------------------------
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
-SOURCES		:=	source source/utils libraries/fmt libraries/imgui
-DATA		:=	data data/debug_controller/
-INCLUDES	:=	source libraries/fmt libraries/imgui
+SOURCES		:=	source source/utils libraries/imgui data
+DATA		:=	
+INCLUDES	:=	source libraries/imgui data
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -36,7 +36,7 @@ LDFLAGS	=	-g $(MACHDEP) -Wl,-Map,$(notdir $@).map
 #---------------------------------------------------------------------------------
 LIBS	:=	-lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2main -lSDL2 \
 			`$(PREFIX)pkg-config freetype2 libpng libjpeg --libs` \
-			-lfat -laesnd -lphysfs
+			-lfat -laesnd
 LIBS	+= -logc -lm -ldb
 
 #---------------------------------------------------------------------------------
@@ -126,22 +126,6 @@ $(OUTPUT).dol: $(OUTPUT).elf
 $(OUTPUT).elf: $(OFILES)
 
 $(OFILES_SOURCES) : $(HFILES)
-
-#---------------------------------------------------------------------------------
-# This rule links in binary data with the .jpg extension
-#---------------------------------------------------------------------------------
-%.jpg.o	:	%.jpg
-#---------------------------------------------------------------------------------
-	@echo $(notdir $<)
-	$(bin2o)
-
-#---------------------------------------------------------------------------------
-# This rule links in binary data with the .png extension
-#---------------------------------------------------------------------------------
-%.png.o	:	%.png
-#---------------------------------------------------------------------------------
-	@echo $(notdir $<)
-	$(bin2o)
 
 -include $(DEPENDS)
 
