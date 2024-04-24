@@ -1,25 +1,28 @@
 #include "utils/framerate.hpp"
 
 
-// Library includes
+// Linked library includes
 #include <ogc/lwp_watchdog.h>  // Needed for gettime and ticks_to_millisecs
 
 
-// Local includes
-#include "grrstate.hpp"
+// Local library includes
+#include "imgui.h"
+
+
+#define ONE_SECOND_IN_MILLISECONDS 1000
 
 
 namespace game {
 
 
+namespace utils {
+
+
 const char *FPS_STRING = "Current FPS: %d";
 
 
-Framerate::Framerate(GRRState& grr_state, GRRLIB_texImg* font, unsigned int color, bool show) {
-	m_font = font;
-	m_color = color;
+Framerate::Framerate(bool show) {
 	m_show = show;
-	m_grr_state = grr_state;
 }
 
 
@@ -40,7 +43,7 @@ void Framerate::Calculate() {
 	const u32 currentTime = ticks_to_millisecs(gettime());
 
 	frameCount++;
-	if(currentTime - lastTime > 1000) {
+	if(currentTime - lastTime > ONE_SECOND_IN_MILLISECONDS) {
 		lastTime = currentTime;
 		FPS = frameCount;
 		frameCount = 0;
@@ -51,7 +54,14 @@ void Framerate::Calculate() {
 
 void Framerate::Display() {
 	if (m_show) {
-		GRRLIB_Printf(x_position, y_position, m_font, m_color, 1, FPS_STRING, m_framerate);
+		ImGui::SetNextWindowPos(ImVec2(x_position, y_position));
+		ImGui::SetNextWindowSize(ImVec2(m_width, m_height));
+		ImGui::Begin(
+			"Framerate: 00", nullptr,
+			ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoNav
+		);
+		ImGui::Text(FPS_STRING, m_framerate);
+		ImGui::End();
 	}
 }
 
@@ -59,6 +69,9 @@ void Framerate::Display() {
 void Framerate::ToggleShowHide() {
 	m_show = !m_show;
 }
+
+
+}	// namespace utils
 
 
 }	// namespace game

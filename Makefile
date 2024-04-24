@@ -17,9 +17,9 @@ include $(DEVKITPPC)/gamecube_rules
 #---------------------------------------------------------------------------------
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
-SOURCES		:=	source source/utils
+SOURCES		:=	source source/utils libraries/fmt libraries/imgui
 DATA		:=	data data/debug_controller/
-INCLUDES	:=	source
+INCLUDES	:=	source libraries/fmt libraries/imgui
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -34,15 +34,16 @@ LDFLAGS	=	-g $(MACHDEP) -Wl,-Map,$(notdir $@).map
 # any extra libraries we wish to link with the project
 # the order can-be/is critical
 #---------------------------------------------------------------------------------
-LIBS	:= -lgrrlib -lpngu `$(PREFIX)pkg-config freetype2 libpng libjpeg --libs` -lfat
-#LIBS	+= -lmodplay -laesnd
+LIBS	:=	-lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2main -lSDL2 \
+			`$(PREFIX)pkg-config freetype2 libpng libjpeg --libs` \
+			-lfat -laesnd -lphysfs
 LIBS	+= -logc -lm -ldb
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
 # include and lib
 #---------------------------------------------------------------------------------
-LIBDIRS	:= $(PORTLIBS)
+LIBDIRS	:= $(PORTLIBS)/gamecube
 
 #---------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add additional
