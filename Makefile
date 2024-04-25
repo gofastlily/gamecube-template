@@ -17,9 +17,9 @@ include $(DEVKITPPC)/gamecube_rules
 #---------------------------------------------------------------------------------
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
-SOURCES		:=	source source/utils libraries/imgui data
+SOURCES		:=	source source/utils libraries/imgui data data/debug_controller
 DATA		:=	
-INCLUDES	:=	source libraries/imgui data
+INCLUDES	:=	source libraries/imgui data data/debug_controller
 
 #---------------------------------------------------------------------------------
 # options for code generation

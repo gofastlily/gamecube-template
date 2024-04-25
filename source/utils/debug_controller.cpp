@@ -2,30 +2,37 @@
 
 
 // Linked library includes
-#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 
 // Local library includes
 #include "imgui.h"
 
 
-// Controller assets
-// #include "signature_white_png.h"
-// #include "debug_controller_outline_png.h"
-// #include "debug_controller_button_start_png.h"
-// #include "debug_controller_button_a_png.h"
-// #include "debug_controller_button_b_png.h"
-// #include "debug_controller_button_x_png.h"
-// #include "debug_controller_button_y_png.h"
-// #include "debug_controller_trigger_l_png.h"
-// #include "debug_controller_trigger_r_png.h"
-// #include "debug_controller_trigger_z_png.h"
-// #include "debug_controller_direction_up_png.h"
-// #include "debug_controller_direction_down_png.h"
-// #include "debug_controller_direction_left_png.h"
-// #include "debug_controller_direction_right_png.h"
-// #include "debug_controller_stick_left_png.h"
-// #include "debug_controller_stick_right_png.h"
+// Local asset includes
+#include "debug_controller_outline.hpp"
+#include "debug_controller_button_start.hpp"
+#include "debug_controller_button_a.hpp"
+#include "debug_controller_button_b.hpp"
+#include "debug_controller_button_x.hpp"
+#include "debug_controller_button_y.hpp"
+#include "debug_controller_trigger_l.hpp"
+#include "debug_controller_trigger_r.hpp"
+#include "debug_controller_button_z.hpp"
+#include "debug_controller_direction_up.hpp"
+#include "debug_controller_direction_down.hpp"
+#include "debug_controller_direction_left.hpp"
+#include "debug_controller_direction_right.hpp"
+#include "debug_controller_stick_left.hpp"
+#include "debug_controller_stick_right.hpp"
+#include "signature_white.hpp"
+
+
+#define GCN_CONTROLLER_BUTTON_A	SDL_CONTROLLER_BUTTON_A
+#define GCN_CONTROLLER_BUTTON_B	SDL_CONTROLLER_BUTTON_X
+#define GCN_CONTROLLER_BUTTON_X	SDL_CONTROLLER_BUTTON_B
+#define GCN_CONTROLLER_BUTTON_Y	SDL_CONTROLLER_BUTTON_Y
+#define GCN_CONTROLLER_BUTTON_Z	SDL_CONTROLLER_BUTTON_BACK
 
 
 namespace game {
@@ -37,116 +44,161 @@ namespace utils {
 DebugController::DebugController() { }
 
 
-
-void DebugController::Init(bool show) {
+void DebugController::Init(SDL_Renderer* renderer, SDL_GameController* gamepad, bool show) {
 	m_gamepad = FindController();
 	m_show = show;
 
-	// u8 deadzone = 3;
-	// u8 deadzone_stick_left = deadzone;
-	// u8 deadzone_stick_right = deadzone;
+	logo = Tex2d(
+		IMG_LoadTexture_RW(renderer, SDL_RWFromConstMem(signature_white_png, signature_white_png_len), 1),
+		86.0f, 66.0f, 0.7f, 0.7f
+	);
+	outline = Tex2d(
+		IMG_LoadTexture_RW(renderer, SDL_RWFromConstMem(debug_controller_outline_png, debug_controller_outline_png_len), 1),
+		0.0f, 0.0f, 1.0f, 1.0f
+	);
+	button_start.Init(renderer, debug_controller_button_start_png, debug_controller_button_start_png_len, 121.0f, 114.0f);
+	button_a.Init(renderer, debug_controller_button_a_png, debug_controller_button_a_png_len, 192.0f, 108.0f);
+	button_b.Init(renderer, debug_controller_button_b_png, debug_controller_button_b_png_len, 170.0f, 131.0f);
+	button_x.Init(renderer, debug_controller_button_x_png, debug_controller_button_x_png_len, 220.0f, 102.0f);
+	button_y.Init(renderer, debug_controller_button_y_png, debug_controller_button_y_png_len, 185.0f, 83.0f);
+	button_z.Init(renderer, debug_controller_button_z_png, debug_controller_button_z_png_len, 182.0f, 42.0f);
+	direction_up.Init(renderer, debug_controller_direction_up_png, debug_controller_direction_up_png_len, 78.0f, 158.0f);
+	direction_down.Init(renderer, debug_controller_direction_down_png, debug_controller_direction_down_png_len, 78.0f, 182.0f);
+	direction_left.Init(renderer, debug_controller_direction_left_png, debug_controller_direction_left_png_len, 67.0f, 171.0f);
+	direction_right.Init(renderer, debug_controller_direction_right_png, debug_controller_direction_right_png_len, 89.0f, 171.0f);
+	stick_left.Init(renderer, debug_controller_stick_left_png, debug_controller_stick_left_png_len, 17.0f, 94.0f);
+	stick_right.Init(renderer, debug_controller_stick_right_png, debug_controller_stick_right_png_len, 154.0f, 163.0f);
+	trigger_l.Init(renderer, debug_controller_trigger_l_png, debug_controller_trigger_l_png_len, 13.0f, 27.0f);
+	trigger_r.Init(renderer, debug_controller_trigger_r_png, debug_controller_trigger_r_png_len, 182.0f, 24.0f);
 
-	// m_debug_controller_logo = GRRLIB_LoadTexture(signature_white_png);
-	// m_debug_controller_outline = GRRLIB_LoadTexture(debug_controller_outline_png);
-	// m_debug_controller_button_a = GRRLIB_LoadTexture(debug_controller_button_a_png);
-	// m_debug_controller_button_start = GRRLIB_LoadTexture(debug_controller_button_start_png);
-	// m_debug_controller_button_b = GRRLIB_LoadTexture(debug_controller_button_b_png);
-	// m_debug_controller_button_x = GRRLIB_LoadTexture(debug_controller_button_x_png);
-	// m_debug_controller_button_y = GRRLIB_LoadTexture(debug_controller_button_y_png);
-	// m_debug_controller_trigger_l = GRRLIB_LoadTexture(debug_controller_trigger_l_png);
-	// m_debug_controller_trigger_r = GRRLIB_LoadTexture(debug_controller_trigger_r_png);
-	// m_debug_controller_trigger_z = GRRLIB_LoadTexture(debug_controller_trigger_z_png);
-	// m_debug_controller_direction_up = GRRLIB_LoadTexture(debug_controller_direction_up_png);
-	// m_debug_controller_direction_down = GRRLIB_LoadTexture(debug_controller_direction_down_png);
-	// m_debug_controller_direction_left = GRRLIB_LoadTexture(debug_controller_direction_left_png);
-	// m_debug_controller_direction_right = GRRLIB_LoadTexture(debug_controller_direction_right_png);
-	// m_debug_controller_stick_left = GRRLIB_LoadTexture(debug_controller_stick_left_png);
-	// m_debug_controller_stick_right = GRRLIB_LoadTexture(debug_controller_stick_right_png);
+	stick_left.show = true;
+	stick_right.show = true;
+	trigger_l.y_position_offset = 12.5f;
+	trigger_r.y_position_offset = 12.5f;
+}
+
+
+void DebugController::ProcessInput(SDL_Event& event) {
+	switch (event.type) {
+		case SDL_CONTROLLERBUTTONDOWN:
+		case SDL_CONTROLLERBUTTONUP:
+			HandleButton(event);
+			break;
+		case SDL_CONTROLLERAXISMOTION:
+			HandleAxisMotion(event);
+			break;
+	}
+}
+
+
+void DebugController::HandleButton(SDL_Event& event) {
+	switch (event.cbutton.button) {
+		case SDL_CONTROLLER_BUTTON_START:
+			button_start.ProcessButtonInput(event);
+			break;
+		case GCN_CONTROLLER_BUTTON_A:
+			button_a.ProcessButtonInput(event);
+			break;
+		case GCN_CONTROLLER_BUTTON_B:
+			button_b.ProcessButtonInput(event);
+			break;
+		case GCN_CONTROLLER_BUTTON_X:
+			button_x.ProcessButtonInput(event);
+			break;
+		case GCN_CONTROLLER_BUTTON_Y:
+			button_y.ProcessButtonInput(event);
+			break;
+		case GCN_CONTROLLER_BUTTON_Z:
+			button_z.ProcessButtonInput(event);
+			break;
+		case SDL_CONTROLLER_BUTTON_LEFTSHOULDER:
+			trigger_l.ProcessButtonInput(event);
+			break;
+		case SDL_CONTROLLER_BUTTON_RIGHTSHOULDER:
+			trigger_r.ProcessButtonInput(event);
+			break;
+		case SDL_CONTROLLER_BUTTON_DPAD_UP:
+			direction_up.ProcessButtonInput(event);
+			break;
+		case SDL_CONTROLLER_BUTTON_DPAD_DOWN:
+			direction_down.ProcessButtonInput(event);
+			break;
+		case SDL_CONTROLLER_BUTTON_DPAD_LEFT:
+			direction_left.ProcessButtonInput(event);
+			break;
+		case SDL_CONTROLLER_BUTTON_DPAD_RIGHT:
+			direction_right.ProcessButtonInput(event);
+			break;
+	}
+}
+
+
+void DebugController::HandleAxisMotion(SDL_Event& event) {
+	switch (event.cbutton.button) {
+		case SDL_CONTROLLER_AXIS_LEFTX:
+		case SDL_CONTROLLER_AXIS_LEFTY:
+			stick_left.ProcessAxisInput(event);
+			break;
+		case SDL_CONTROLLER_AXIS_RIGHTX:
+		case SDL_CONTROLLER_AXIS_RIGHTY:
+			stick_right.ProcessAxisInput(event);
+			break;
+		case SDL_CONTROLLER_AXIS_TRIGGERLEFT:
+			trigger_l.ProcessAxisInput(event);
+			break;
+		case SDL_CONTROLLER_AXIS_TRIGGERRIGHT:
+			trigger_r.ProcessAxisInput(event);
+			break;
+	}
 }
 
 
 void DebugController::Update() {
-	// bool button_z = SDL_GameControllerGetButton(m_gamepad, SDL_CONTROLLER_BUTTON_RIGHTSHOULDER);
+	trigger_l.Update();
+	trigger_r.Update();
+
+	button_start.Update();
+	button_a.Update();
+	button_b.Update();
+	button_x.Update();
+	button_y.Update();
+	button_z.Update();
+
+	direction_up.Update();
+	direction_down.Update();
+	direction_left.Update();
+	direction_right.Update();
+
+	stick_left.Update();
+	stick_right.Update();
 }
 
 
-void DebugController::Display() {
+void DebugController::Render(SDL_Renderer* renderer) {
 	if (!m_show) return;
 
-	ImGui::SetNextWindowPos(ImVec2(10, 10));
-	ImGui::SetNextWindowSize(ImVec2(300, 220));
-	ImGui::Begin(
-		"Debug Controller", nullptr,
-		ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoNav
-	);
-	ImGui::Text("Debug Controller UI");
+	// Render triggers first so Z appears above R
+	trigger_l.Render(renderer);
+	trigger_r.Render(renderer);
 
-	int num_joysticks = SDL_NumJoysticks();
-	int num_game_controllers = 0;
-	for (int i = 0; i < num_joysticks; i++) {
-	    if (SDL_IsGameController(i)) {
-	        num_game_controllers++;
-	    }
-	}
-	if (!num_game_controllers) return;
-	ImGui::Text("Connected Game Controllers: %d", num_game_controllers);
-	ImGui::Text("Controller mappings: %d", SDL_GameControllerNumMappings());
+	button_start.Render(renderer);
+	button_a.Render(renderer);
+	button_b.Render(renderer);
+	button_x.Render(renderer);
+	button_y.Render(renderer);
+	button_z.Render(renderer);
 
-	// if (m_gamepad) {
-	// 	ImGui::Text("Left Trigger: %d", );
-	// }
+	direction_up.Render(renderer);
+	direction_down.Render(renderer);
+	direction_left.Render(renderer);
+	direction_right.Render(renderer);
 
-	ImGui::End();
+	logo.Render(renderer);
+	outline.Render(renderer);
 
-	// u16 buttonsHeld0 = PAD_ButtonsHeld(0);
-	// GRRLIB_DrawImg(0.0f, 0.0f, m_debug_controller_outline, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE);
-	// GRRLIB_DrawImg(86.0f, 66.0f, m_debug_controller_logo, 0.0f, 0.7f, 0.7f, GRRLIB_WHITE);
-	// GRRLIB_DrawImg(
-	// 	stick_left_x_position + stick_left_x_offset,
-	// 	stick_left_y_position + stick_left_y_offset,
-	// 	m_debug_controller_stick_left, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE
-	// );
-	// GRRLIB_DrawImg(
-	// 	stick_right_x_position + stick_right_x_offset,
-	// 	stick_right_y_position + stick_right_y_offset,
-	// 	m_debug_controller_stick_right, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE
-	// );
-	// if (buttonsHeld0 & PAD_BUTTON_START) {
-	// 	GRRLIB_DrawImg(121.0f, 114.0f, m_debug_controller_button_start, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE);
-	// }
-	// if (buttonsHeld0 & PAD_BUTTON_A) {
-	// 	GRRLIB_DrawImg(192.0f, 108.0f, m_debug_controller_button_a, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE);
-	// }
-	// if (buttonsHeld0 & PAD_BUTTON_B) {
-	// 	GRRLIB_DrawImg(170.0f, 131.0f, m_debug_controller_button_b, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE);
-	// }
-	// if (buttonsHeld0 & PAD_BUTTON_X) {
-	// 	GRRLIB_DrawImg(220.0f, 102.0f, m_debug_controller_button_x, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE);
-	// }
-	// if (buttonsHeld0 & PAD_BUTTON_Y) {
-	// 	GRRLIB_DrawImg(185.0f, 83.0f, m_debug_controller_button_y, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE);
-	// }
-	// if (buttonsHeld0 & PAD_TRIGGER_L) {
-	// 	GRRLIB_DrawImg(13.0f, 39.0f, m_debug_controller_trigger_l, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE);
-	// }
-	// if (buttonsHeld0 & PAD_TRIGGER_R) {
-	// 	GRRLIB_DrawImg(182.0f, 37.0f, m_debug_controller_trigger_r, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE);
-	// }
-	// if (buttonsHeld0 & PAD_TRIGGER_Z) {
-	// 	GRRLIB_DrawImg(182.0f, 42.0f, m_debug_controller_trigger_z, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE);
-	// }
-	// if (buttonsHeld0 & PAD_BUTTON_UP) {
-	// 	GRRLIB_DrawImg(78.0f, 158.0f, m_debug_controller_direction_up, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE);
-	// }
-	// if (buttonsHeld0 & PAD_BUTTON_DOWN) {
-	// 	GRRLIB_DrawImg(78.0f, 182.0f, m_debug_controller_direction_down, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE);
-	// }
-	// if (buttonsHeld0 & PAD_BUTTON_LEFT) {
-	// 	GRRLIB_DrawImg(67.0f, 171.0f, m_debug_controller_direction_left, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE);
-	// }
-	// if (buttonsHeld0 & PAD_BUTTON_RIGHT) {
-	// 	GRRLIB_DrawImg(89.0f, 171.0f, m_debug_controller_direction_right, 0.0f, 1.0f, 1.0f, GRRLIB_WHITE);
-	// }
+	// Render sticks last to ensure they appear above the outline
+	stick_left.Render(renderer);
+	stick_right.Render(renderer);
 }
 
 

@@ -28,24 +28,19 @@
 #include "utils/framerate.hpp"
 
 
-// Local asset includes
-#include "signature_white.hpp"
-
-
 #define SCREEN_WIDTH	640
 #define SCREEN_HEIGHT	480
 
 
-#define GCN_CONTROLLER_A	SDL_CONTROLLER_BUTTON_A
-#define GCN_CONTROLLER_B	SDL_CONTROLLER_BUTTON_X
-#define GCN_CONTROLLER_X	SDL_CONTROLLER_BUTTON_B
-#define GCN_CONTROLLER_Y	SDL_CONTROLLER_BUTTON_Y
+#define GCN_CONTROLLER_BUTTON_A	SDL_CONTROLLER_BUTTON_A
+#define GCN_CONTROLLER_BUTTON_B	SDL_CONTROLLER_BUTTON_X
+#define GCN_CONTROLLER_BUTTON_X	SDL_CONTROLLER_BUTTON_B
+#define GCN_CONTROLLER_BUTTON_Y	SDL_CONTROLLER_BUTTON_Y
+#define GCN_CONTROLLER_BUTTON_Z	SDL_CONTROLLER_BUTTON_BACK
 
 
 SDL_Renderer *renderer;
 SDL_GameController *gamepad;
-SDL_Rect texr;
-SDL_Texture *signature_texture = nullptr;
 
 
 game::utils::Framerate framerate = game::utils::Framerate();
@@ -57,6 +52,7 @@ void init() {
 	if (status < 0) {
 		std::cerr << "SDL could not initialize video and audio! SDL Error: " << SDL_GetError() << std::endl;
 	}
+	IMG_Init(IMG_INIT_PNG);
 }
 
 
@@ -74,9 +70,9 @@ SDL_GameController *find_controller() {
 
 void handle_controller_button_down(SDL_Event& event) {
 	switch (event.cbutton.button) {
-		case GCN_CONTROLLER_X:  // TODO: Remap to Z
+		case GCN_CONTROLLER_BUTTON_Z:
 			framerate.ToggleShowHide();
-			debug_controller.ToggleShowHide();
+			// debug_controller.ToggleShowHide();
 			break;
 	}
 }
@@ -85,6 +81,7 @@ void handle_controller_button_down(SDL_Event& event) {
 void process_input() {
 	SDL_Event event;
 	while(SDL_PollEvent(&event) != 0) {
+		debug_controller.ProcessInput(event);
 		switch (event.type) {
 			case SDL_CONTROLLERDEVICEADDED:
 				if (!gamepad) {
@@ -122,22 +119,8 @@ void render(SDL_Renderer* renderer) {
 	// Clear the screen.
 	SDL_RenderClear(renderer);
 
-
-	// Render test image
-	SDL_RenderCopy(renderer, signature_texture, NULL, &texr);
-
-	// Draw a grey background
-	// SDL_SetRenderDrawColor(renderer, 100, 100, 100, SDL_ALPHA_OPAQUE);
-	// SDL_Rect rect = SDL_Rect();
-	// rect.x = 0;
-	// rect.y = 0;
-	// rect.h = SCREEN_HEIGHT;
-	// rect.w = SCREEN_WIDTH;
-	// SDL_RenderDrawRect(renderer, &rect);
-	// SDL_RenderFillRect(renderer, &rect);
-
-	// Draw a teal Triforce
-	SDL_SetRenderDrawColor(renderer, 100, 255, 255, SDL_ALPHA_OPAQUE);
+	// Draw a Triforce
+	SDL_SetRenderDrawColor(renderer, 247, 195, 55, SDL_ALPHA_OPAQUE);
 	SDL_RenderDrawLine(renderer, 0, SCREEN_HEIGHT - 1, SCREEN_WIDTH / 2.0f, 0);
 	SDL_RenderDrawLine(renderer, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1, SCREEN_WIDTH / 2.0f, 0);
 	SDL_RenderDrawLine(renderer, 0, SCREEN_HEIGHT - 1, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1);
@@ -146,7 +129,7 @@ void render(SDL_Renderer* renderer) {
 	SDL_RenderDrawLine(renderer, SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT - 1, SCREEN_WIDTH / 4.0f * 3.0f, SCREEN_HEIGHT / 2.0f);
 
 	// Debug GUI
-	debug_controller.Display();
+	debug_controller.Render(renderer);
 	framerate.Display();
 
 	// Dear ImGui should happen right before presenting the render
@@ -190,17 +173,8 @@ int SDL_main(int argc, char **argv) {
 	ImGui_ImplSDL2_InitForSDLRenderer(window, renderer);
 	ImGui_ImplSDLRenderer2_Init(renderer);
 
-	int w, h;	// texture width & height
-	IMG_Init(IMG_INIT_PNG);
-	signature_texture = IMG_LoadTexture_RW(renderer, SDL_RWFromConstMem(signature_white_png, signature_white_png_len), 1);
-	SDL_QueryTexture(signature_texture, NULL, NULL, &w, &h); // get the width and height of the texture
-	texr.x = SCREEN_WIDTH / 2; 
-	texr.y = SCREEN_HEIGHT / 2;
-	texr.w = w;
-	texr.h = h; 
-
 	gamepad = find_controller();
-	debug_controller.Init(true);
+	debug_controller.Init(renderer, gamepad, true);
 
 	while (1) {
 		// Keep ImGui outside loop functions to allow for ImGui anywhere
@@ -215,6 +189,8 @@ int SDL_main(int argc, char **argv) {
 
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
+
+	IMG_Quit();
 	SDL_Quit();
 
 	exit(0);	// Use exit() to exit a program, do not use 'return' from main()

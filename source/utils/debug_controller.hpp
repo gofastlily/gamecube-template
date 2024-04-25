@@ -5,6 +5,11 @@
 #include <SDL2/SDL.h>
 
 
+// Local source includes
+#include "tex_2d.hpp"
+#include "debug_controller_input.hpp"
+
+
 namespace game {
 
 
@@ -14,38 +19,39 @@ namespace utils {
 class DebugController {
 	public:
 		DebugController();
-		void Display();
-		void Init(bool=false);
+		void Init(SDL_Renderer*, SDL_GameController*, bool=false);
+		void ProcessInput(SDL_Event&);
 		void Update();
+		void Render(SDL_Renderer*);
 		void ToggleShowHide();
 		float stick_left_x_offset = 0.0f;
 		float stick_left_y_offset = 0.0f;
 		float stick_right_x_offset = 0.0f;
 		float stick_right_y_offset = 0.0f;
+		float deadzone = 50.0f;
+		DebugControllerInput button_start = DebugControllerInput();
+		DebugControllerInput button_a = DebugControllerInput();
+		DebugControllerInput button_b = DebugControllerInput();
+		DebugControllerInput button_x = DebugControllerInput();
+		DebugControllerInput button_y = DebugControllerInput();
+		DebugControllerInput button_z = DebugControllerInput();
+		DebugControllerInput direction_up = DebugControllerInput();
+		DebugControllerInput direction_down = DebugControllerInput();
+		DebugControllerInput direction_left = DebugControllerInput();
+		DebugControllerInput direction_right = DebugControllerInput();
+		DebugControllerInput stick_left = DebugControllerInput();
+		DebugControllerInput stick_right = DebugControllerInput();
+		DebugControllerInput trigger_l = DebugControllerInput();
+		DebugControllerInput trigger_r = DebugControllerInput();
 	private:
+		void HandleButton(SDL_Event&);
+		void HandleAxisMotion(SDL_Event&);
 		SDL_GameController *FindController();
 		SDL_GameController* m_gamepad;
 		bool m_show = true;
-		// GRRLIB_texImg* m_debug_controller_logo;
-		// GRRLIB_texImg* m_debug_controller_outline;
-		// GRRLIB_texImg* m_debug_controller_button_a;
-		// GRRLIB_texImg* m_debug_controller_button_start;
-		// GRRLIB_texImg* m_debug_controller_button_b;
-		// GRRLIB_texImg* m_debug_controller_button_x;
-		// GRRLIB_texImg* m_debug_controller_button_y;
-		// GRRLIB_texImg* m_debug_controller_trigger_l;
-		// GRRLIB_texImg* m_debug_controller_trigger_r;
-		// GRRLIB_texImg* m_debug_controller_trigger_z;
-		// GRRLIB_texImg* m_debug_controller_direction_up;
-		// GRRLIB_texImg* m_debug_controller_direction_down;
-		// GRRLIB_texImg* m_debug_controller_direction_left;
-		// GRRLIB_texImg* m_debug_controller_direction_right;
-		// GRRLIB_texImg* m_debug_controller_stick_left;
-		// GRRLIB_texImg* m_debug_controller_stick_right;
-		float stick_left_x_position = 17.0f;
-		float stick_left_y_position = 94.0f;
-		float stick_right_x_position = 154.0f;
-		float stick_right_y_position = 163.0f;
+		SDL_Rect m_texture_rect;
+		Tex2d logo;
+		Tex2d outline;
 };
 
 
