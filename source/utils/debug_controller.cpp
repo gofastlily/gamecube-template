@@ -59,7 +59,7 @@ void DebugController::Init(SDL_Renderer* renderer, SDL_GameController* gamepad, 
 	button_start.Init(renderer, debug_controller_button_start_png, debug_controller_button_start_png_len, 121.0f, 114.0f);
 	button_a.Init(renderer, debug_controller_button_a_png, debug_controller_button_a_png_len, 192.0f, 108.0f);
 	button_b.Init(renderer, debug_controller_button_b_png, debug_controller_button_b_png_len, 170.0f, 131.0f);
-	button_x.Init(renderer, debug_controller_button_x_png, debug_controller_button_x_png_len, 220.0f, 102.0f);
+	button_x.Init(renderer, debug_controller_button_x_png, debug_controller_button_x_png_len, 219.0f, 102.0f);
 	button_y.Init(renderer, debug_controller_button_y_png, debug_controller_button_y_png_len, 185.0f, 83.0f);
 	button_z.Init(renderer, debug_controller_button_z_png, debug_controller_button_z_png_len, 182.0f, 42.0f);
 	direction_up.Init(renderer, debug_controller_direction_up_png, debug_controller_direction_up_png_len, 78.0f, 158.0f);
@@ -73,6 +73,8 @@ void DebugController::Init(SDL_Renderer* renderer, SDL_GameController* gamepad, 
 
 	stick_left.show = true;
 	stick_right.show = true;
+	trigger_l.show = true;
+	trigger_r.show = true;
 	trigger_l.y_position_offset = 12.5f;
 	trigger_r.y_position_offset = 12.5f;
 }

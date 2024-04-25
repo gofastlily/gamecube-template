@@ -28,7 +28,7 @@ class DebugController {
 		float stick_left_y_offset = 0.0f;
 		float stick_right_x_offset = 0.0f;
 		float stick_right_y_offset = 0.0f;
-		float deadzone = 50.0f;
+		float deadzone = 1000.0f;
 		DebugControllerInput button_start = DebugControllerInput();
 		DebugControllerInput button_a = DebugControllerInput();
 		DebugControllerInput button_b = DebugControllerInput();

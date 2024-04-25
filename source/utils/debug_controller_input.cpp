@@ -42,15 +42,16 @@ void DebugControllerInput::ProcessAxisInput(SDL_Event& event) {
 	switch (event.cbutton.button) {
 		case SDL_CONTROLLER_AXIS_LEFTX:
 		case SDL_CONTROLLER_AXIS_RIGHTX:
-			x_position_offset = AxisValueWithDeadzone(event.caxis.value) / 4.0f;
+			x_position_offset = AxisValueWithDeadzone(event.caxis.value) / 5.0f;
 			break;
 		case SDL_CONTROLLER_AXIS_LEFTY:
 		case SDL_CONTROLLER_AXIS_RIGHTY:
-			y_position_offset = AxisValueWithDeadzone(event.caxis.value) / 4.0f;
+			y_position_offset = AxisValueWithDeadzone(event.caxis.value) / 5.0f;
 			break;
 		case SDL_CONTROLLER_AXIS_TRIGGERLEFT:
 		case SDL_CONTROLLER_AXIS_TRIGGERRIGHT:
 			y_position_offset = AxisValueWithDeadzone(event.caxis.value) / 4.0f;
+			show = true;
 			break;
 	}
 }

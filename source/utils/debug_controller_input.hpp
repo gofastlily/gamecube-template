@@ -31,7 +31,7 @@ class DebugControllerInput {
 		float y_position = 0.0f;
 		float x_position_offset = 0.0f;
 		float y_position_offset = 0.0f;
-		float deadzone = 50.0f;
+		float deadzone = 1000.0f;
 		bool show = false;
 	private:
 		float AxisValueWithDeadzone(float);
