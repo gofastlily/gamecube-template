@@ -1,7 +1,8 @@
 #include "tex_2d.hpp"
 
 
-namespace game {
+// Local library includes
+#include "imgui.h"
 
 
 Tex2d::Tex2d() { }
@@ -36,6 +37,3 @@ SDL_Rect Tex2d::TextureRect(SDL_Texture* texture, float x_position, float y_posi
 	rect.h = texture_height * y_scale;
 	return rect;
 }
-
-
-}	// namespace game

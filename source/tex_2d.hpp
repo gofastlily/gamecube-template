@@ -5,9 +5,6 @@
 #include <SDL2/SDL.h>
 
 
-namespace game {
-
-
 class Tex2d {
 	public:
 		Tex2d();
@@ -21,6 +18,3 @@ class Tex2d {
 		void Render(SDL_Renderer*);
 		static SDL_Rect TextureRect(SDL_Texture*, float, float, float = 1.0f, float = 1.0f);
 };
-
-
-}	// namespace game

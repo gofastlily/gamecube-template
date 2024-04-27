@@ -6,29 +6,36 @@
 
 
 // Local source includes
+#include "input/gamepad.hpp"
 #include "tex_2d.hpp"
 #include "debug_controller_input.hpp"
-
-
-namespace game {
 
 
 namespace utils {
 
 
+namespace debug_controllers {
+
+
 class DebugController {
 	public:
 		DebugController();
-		void Init(SDL_Renderer*, SDL_GameController*, bool=false);
-		void ProcessInput(SDL_Event&);
-		void Update();
+		void Init(SDL_Renderer*, int);
+		void Update(input::Gamepad);
 		void Render(SDL_Renderer*);
 		void ToggleShowHide();
+		SDL_GameController *FindController();
 		float stick_left_x_offset = 0.0f;
 		float stick_left_y_offset = 0.0f;
 		float stick_right_x_offset = 0.0f;
 		float stick_right_y_offset = 0.0f;
 		float deadzone = 1000.0f;
+		int index = -1;
+		bool show = true;
+		bool is_gamepad_connected = false;
+		SDL_Rect texture_rect;
+		Tex2d logo;
+		Tex2d outline;
 		DebugControllerInput button_start = DebugControllerInput();
 		DebugControllerInput button_a = DebugControllerInput();
 		DebugControllerInput button_b = DebugControllerInput();
@@ -43,19 +50,10 @@ class DebugController {
 		DebugControllerInput stick_right = DebugControllerInput();
 		DebugControllerInput trigger_l = DebugControllerInput();
 		DebugControllerInput trigger_r = DebugControllerInput();
-	private:
-		void HandleButton(SDL_Event&);
-		void HandleAxisMotion(SDL_Event&);
-		SDL_GameController *FindController();
-		SDL_GameController* m_gamepad;
-		bool m_show = true;
-		SDL_Rect m_texture_rect;
-		Tex2d logo;
-		Tex2d outline;
 };
 
 
+}	// namespace debug_controllers
+
+
 }	// namespace utils
-
-
-}	// namespace game

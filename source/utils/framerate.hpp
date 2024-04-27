@@ -4,9 +4,6 @@
 #define FRAMERATE_DEFAULT_VISIBILITY true
 
 
-namespace game {
-
-
 namespace utils {
 
 
@@ -16,17 +13,13 @@ class Framerate {
 		void Calculate();
 		void Display();
 		void ToggleShowHide();
+		int framerate;
+		bool show;
+		int width = 125;
+		int height = 25;
 		float x_position = 500.0f;
 		float y_position = 10.0f;
-	private:
-		int m_framerate;
-		bool m_show;
-		int m_width = 125;
-		int m_height = 25;
 };
 
 
 }	// namespace utils
-
-
-}	// namespace game

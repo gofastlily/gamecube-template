@@ -12,9 +12,6 @@
 #define ONE_SECOND_IN_MILLISECONDS 1000
 
 
-namespace game {
-
-
 namespace utils {
 
 
@@ -22,7 +19,7 @@ const char *FPS_STRING = "Current FPS: %d";
 
 
 Framerate::Framerate(bool show) {
-	m_show = show;
+	show = show;
 }
 
 
@@ -48,30 +45,28 @@ void Framerate::Calculate() {
 		FPS = frameCount;
 		frameCount = 0;
 	}
-	m_framerate = FPS;
+	framerate = FPS;
 }
 
 
 void Framerate::Display() {
-	if (m_show) {
+	if (show) {
 		ImGui::SetNextWindowPos(ImVec2(x_position, y_position));
-		ImGui::SetNextWindowSize(ImVec2(m_width, m_height));
+		ImGui::SetNextWindowSize(ImVec2(width, height));
 		ImGui::Begin(
 			"Framerate: 00", nullptr,
-			ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoNav
+			ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoBackground \
+			| ImGuiWindowFlags_NoInputs | ImGuiWindowFlags_NoFocusOnAppearing
 		);
-		ImGui::Text(FPS_STRING, m_framerate);
+		ImGui::Text(FPS_STRING, framerate);
 		ImGui::End();
 	}
 }
 
 
 void Framerate::ToggleShowHide() {
-	m_show = !m_show;
+	show = !show;
 }
 
 
 }	// namespace utils
-
-
-}	// namespace game
