@@ -14,8 +14,8 @@ Game::Game(SDL_Renderer* _renderer, input::Input _input) : renderer(_renderer), 
 
 
 void Game::Update() {
-	// ImGui::SetNextWindowPos(ImVec2(640 / 2.0 + 10.0, 40.0));
-	// ImGui::SetNextWindowSize(ImVec2(640/ 2.0 - 20.0, 480 - 50.0));
+	// ImGui::SetNextWindowPos(ImVec2(Constants::SCREEN_WIDTH / 2.0 + 10.0, 55.0));
+	// ImGui::SetNextWindowSize(ImVec2(Constants::SCREEN_WIDTH / 2.0 - 20.0, Constants::SCREEN_HEIGHT - 80.0));
 	// ImGui::Begin("Hello, GameCube!", nullptr, ImGuiWindowFlags_NoFocusOnAppearing);
 	// ImGui::Text("Written using SDL and Dear ImGui\nfor the Nintendo GameCube");
 	// ImGui::Separator();

@@ -10,8 +10,8 @@
 
 
 // Local source includes
+#include "constants.hpp"
 #include "input/input.hpp"
-#include "utils/framerate.hpp"
 
 
 class Game {

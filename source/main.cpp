@@ -24,13 +24,11 @@
 
 
 // Local source includes
+#include "constants.hpp"
 #include "game.hpp"
+#include "utils/framerate.hpp"
 #include "utils/utils.hpp"
 #include "utils/debug_controllers/manager.hpp"
-
-
-#define SCREEN_WIDTH	640
-#define SCREEN_HEIGHT	480
 
 
 int SDL_main(int argc, char **argv) {
@@ -50,8 +48,8 @@ int SDL_main(int argc, char **argv) {
 		"SDL2",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		SCREEN_WIDTH,
-		SCREEN_HEIGHT,
+		Constants::SCREEN_WIDTH,
+		Constants::SCREEN_HEIGHT,
 		SDL_WINDOW_FULLSCREEN_DESKTOP
 	);
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
@@ -59,7 +57,7 @@ int SDL_main(int argc, char **argv) {
 
 	// Prepare the SDL Rendere
 	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
-	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+	SDL_RenderSetLogicalSize(renderer, Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT);
 
 
 	// Initialize Dear ImGui
