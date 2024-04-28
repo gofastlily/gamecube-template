@@ -106,6 +106,25 @@ int SDL_main(int argc, char **argv) {
 		}
 		debug_controllers_manager.Update(input);
 
+		ImGui::SetNextWindowPos(ImVec2(Constants::SCREEN_WIDTH / 6.0f, Constants::SCREEN_HEIGHT / 4.0f));
+		ImGui::SetNextWindowSize(ImVec2(Constants::SCREEN_WIDTH / 3.0f * 2.0f, Constants::SCREEN_HEIGHT / 2.0f));
+		ImGui::Begin("Hello, GameCube!", nullptr, ImGuiWindowFlags_NoFocusOnAppearing);
+		ImGui::Text("Written using SDL2 and Dear ImGui\nfor the Nintendo GameCube");
+		ImGui::Separator();
+		ImGui::Text("C++ Standard: %s", utils::Utils::CppStandard());
+		ImGui::End();
+	
+		ImGui::SetNextWindowPos(ImVec2(Constants::SCREEN_WIDTH / 4.0f, Constants::SCREEN_HEIGHT / 10.0f * 8.5f));
+		ImGui::SetNextWindowSize(ImVec2(Constants::SCREEN_WIDTH / 2.0f, Constants::SCREEN_HEIGHT / 10.0f));
+		ImGui::Begin(
+			"User Prompt", nullptr,
+			ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoBackground \
+			| ImGuiWindowFlags_NoInputs | ImGuiWindowFlags_NoFocusOnAppearing
+		);
+		utils::Utils::ImGuiTextCentered("Press L the D-Pad to toggle debug UI");
+		// utils::Utils::ImGuiTextCentered("Press A for Rumble");
+		ImGui::End();
+
 		game.Render();
 		debug_controllers_manager.Render(renderer);
 		framerate.Display();

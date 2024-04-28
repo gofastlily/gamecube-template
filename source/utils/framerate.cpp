@@ -2,7 +2,7 @@
 
 
 // Linked library includes
-#include <ogc/lwp_watchdog.h>  // Needed for gettime and ticks_to_millisecs
+#include <ogc/lwp_watchdog.h>	// Needed for gettime and ticks_to_millisecs
 
 
 // Local library includes
@@ -29,7 +29,7 @@ void Framerate::Display() {
 	ImGui::SetNextWindowPos(ImVec2(x_position - (100 * (state - 1)), y_position));
 	ImGui::SetNextWindowSize(ImVec2(width * state, height * state));
 	ImGui::Begin(
-		"Framerate: 00", nullptr,
+		"Framerate", nullptr,
 		ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoBackground \
 		| ImGuiWindowFlags_NoInputs | ImGuiWindowFlags_NoFocusOnAppearing
 	);
