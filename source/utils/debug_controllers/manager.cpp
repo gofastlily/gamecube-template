@@ -42,7 +42,7 @@ void Manager::ToggleShowHide() {
 }
 
 
-} // namespace debug_controllers
+}	// namespace debug_controllers
 
 
-} // namespace utils
+}	// namespace utils
