@@ -17,7 +17,7 @@
 
 class Game {
 	public:
-		Game(SDL_Renderer*);
+		Game(SDL_Renderer*, utils::Framerate);
 		void PreLoop();
 		void ProcessInput();
 		void Update();

@@ -81,7 +81,8 @@ int SDL_main(int argc, char **argv) {
 
 
 	// Initialize Game
-	Game game = Game(renderer);
+	utils::Framerate framerate = utils::Framerate(io);
+	Game game = Game(renderer, framerate);
 
 	while (1) {
 		game.PreLoop();

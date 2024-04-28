@@ -10,10 +10,8 @@
 #include "utils/utils.hpp"
 
 
-Game::Game(SDL_Renderer* _renderer) {
-	renderer = _renderer;
+Game::Game(SDL_Renderer* _renderer, utils::Framerate _framerate) : renderer(_renderer), framerate(_framerate) {
 	input = input::Input();
-	framerate = utils::Framerate();
 	debug_controllers_manager = utils::debug_controllers::Manager();
 	debug_controllers_manager.Init(renderer);
 }
@@ -48,7 +46,7 @@ void Game::Update() {
 	debug_controllers_manager.Update(input);
 
 	if (input.gamepads[0].button_l.held && input.gamepads[0].dpad_up.pressed) {
-		framerate.ToggleShowHide();
+		framerate.IncrementState();
 	}
 	if (input.gamepads[0].button_l.held && input.gamepads[0].dpad_down.pressed) {
 		debug_controllers_manager.ToggleShowHide();
@@ -73,7 +71,4 @@ void Game::Render() {
 }
 
 
-void Game::PostLoop() {
-	// Framerate calculation should happen as late as possible
-	framerate.Calculate();
-}
+void Game::PostLoop() { }
