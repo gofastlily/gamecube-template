@@ -7,9 +7,9 @@ namespace utils {
 namespace debug_controllers {
 
 
-Manager::Manager() {
+Manager::Manager(bool show) {
 	for (int i = 0; i < CONTROLLER_COUNT; i++) {
-		debug_controllers[i] = DebugController();
+		debug_controllers[i] = DebugController(show);
 	}
 };
 

@@ -21,7 +21,7 @@ namespace debug_controllers {
 
 class Manager {
 	public:
-		Manager();
+		Manager(bool=false);
 		void Init(SDL_Renderer*);
 		void Update(input::Input&);
 		void Render(SDL_Renderer*);

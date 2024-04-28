@@ -34,7 +34,7 @@ namespace utils {
 namespace debug_controllers {
 
 
-DebugController::DebugController() { }
+DebugController::DebugController(bool _show) : show(_show) { }
 
 
 void DebugController::Init(SDL_Renderer* renderer, int index) {

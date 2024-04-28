@@ -19,7 +19,7 @@ namespace debug_controllers {
 
 class DebugController {
 	public:
-		DebugController();
+		DebugController(bool=false);
 		void Init(SDL_Renderer*, int);
 		void Update(input::Gamepad);
 		void Render(SDL_Renderer*);
@@ -31,7 +31,7 @@ class DebugController {
 		float stick_right_y_offset = 0.0f;
 		float deadzone = 1000.0f;
 		int index = -1;
-		bool show = true;
+		bool show;
 		bool is_gamepad_connected = false;
 		SDL_Rect texture_rect;
 		Tex2d logo;
