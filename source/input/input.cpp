@@ -9,6 +9,15 @@ Input::Input() {
 }
 
 
+void Input::ProcessInputs() {
+	ResetButtonStateForAllControllers();
+	SDL_Event event;
+	while(SDL_PollEvent(&event) != 0) {
+		ProcessInput(event);
+	}
+}
+
+
 void Input::ProcessInput(SDL_Event& event) {
 	switch (event.type) {
 		case SDL_CONTROLLERDEVICEADDED:

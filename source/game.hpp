@@ -12,20 +12,14 @@
 // Local source includes
 #include "input/input.hpp"
 #include "utils/framerate.hpp"
-#include "utils/debug_controllers/manager.hpp"
 
 
 class Game {
 	public:
-		Game(SDL_Renderer*, utils::Framerate);
-		void PreLoop();
-		void ProcessInput();
+		Game(SDL_Renderer*, input::Input);
 		void Update();
 		void Render();
-		void PostLoop();
 		SDL_Renderer *renderer;
 		SDL_GameController *gamepad;
 		input::Input input;
-		utils::Framerate framerate;
-		utils::debug_controllers::Manager debug_controllers_manager;
 };

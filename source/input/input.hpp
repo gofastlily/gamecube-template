@@ -18,6 +18,7 @@ namespace input {
 class Input {
 	public:
 		Input();
+		void ProcessInputs();
 		void ProcessInput(SDL_Event&);
 		void ProcessControllerConnected(SDL_Event&);
 		void ProcessControllerDisconnected(SDL_Event&);

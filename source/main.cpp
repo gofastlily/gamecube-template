@@ -81,15 +81,41 @@ int SDL_main(int argc, char **argv) {
 
 
 	// Initialize Game
+	input::Input input = input::Input();
+	Game game = Game(renderer, input);
+
+	// Initialize Utilities
 	utils::Framerate framerate = utils::Framerate(io);
-	Game game = Game(renderer, framerate);
+	utils::debug_controllers::Manager debug_controllers_manager = utils::debug_controllers::Manager();
+	debug_controllers_manager.Init(renderer);
+
 
 	while (1) {
-		game.PreLoop();
-		game.ProcessInput();
+		// Keep ImGui outside loop functions to allow for ImGui anywhere
+		ImGui_ImplSDLRenderer2_NewFrame();
+		ImGui_ImplSDL2_NewFrame();
+		ImGui::NewFrame();
+
+		input.ProcessInputs();
+
 		game.Update();
+		// Utils update here
+		if (input.gamepads[0].button_l.held && input.gamepads[0].dpad_up.pressed) {
+			framerate.IncrementState();
+		}
+		debug_controllers_manager.Update(input);
+		if (input.gamepads[0].button_l.held && input.gamepads[0].dpad_down.pressed) {
+			debug_controllers_manager.ToggleShowHide();
+		}
+
 		game.Render();
-		game.PostLoop();
+		debug_controllers_manager.Render(renderer);
+		framerate.Display();
+
+		// Rendering of Dear ImGui should happen last before SDL presents the render
+		ImGui::Render();
+		ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData());
+		SDL_RenderPresent(renderer);
 	}
 
 

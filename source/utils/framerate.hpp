@@ -18,7 +18,6 @@ namespace utils {
 class Framerate {
 	public:
 		Framerate(ImGuiIO&, int=FRAMERATE_DEFAULT_STATE);
-		void Calculate();
 		void Display();
 		void IncrementState();
 		int framerate;

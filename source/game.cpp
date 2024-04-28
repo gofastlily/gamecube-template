@@ -10,28 +10,7 @@
 #include "utils/utils.hpp"
 
 
-Game::Game(SDL_Renderer* _renderer, utils::Framerate _framerate) : renderer(_renderer), framerate(_framerate) {
-	input = input::Input();
-	debug_controllers_manager = utils::debug_controllers::Manager();
-	debug_controllers_manager.Init(renderer);
-}
-
-
-void Game::PreLoop() {
-	// Keep ImGui outside loop functions to allow for ImGui anywhere
-	ImGui_ImplSDLRenderer2_NewFrame();
-	ImGui_ImplSDL2_NewFrame();
-	ImGui::NewFrame();
-	input.ResetButtonStateForAllControllers();
-}
-
-
-void Game::ProcessInput() {
-	SDL_Event event;
-	while(SDL_PollEvent(&event) != 0) {
-		input.ProcessInput(event);
-	}
-}
+Game::Game(SDL_Renderer* _renderer, input::Input _input) : renderer(_renderer), input(_input) { }
 
 
 void Game::Update() {
@@ -42,15 +21,6 @@ void Game::Update() {
 	// ImGui::Separator();
 	// ImGui::Text("C++ Standard: %s", utils::Utils::CppStandard());
 	// ImGui::End();
-
-	debug_controllers_manager.Update(input);
-
-	if (input.gamepads[0].button_l.held && input.gamepads[0].dpad_up.pressed) {
-		framerate.IncrementState();
-	}
-	if (input.gamepads[0].button_l.held && input.gamepads[0].dpad_down.pressed) {
-		debug_controllers_manager.ToggleShowHide();
-	}
 }
 
 
@@ -60,15 +30,5 @@ void Game::Render() {
 	// Clear the screen.
 	SDL_RenderClear(renderer);
 
-	// Debug GUI
-	debug_controllers_manager.Render(renderer);
-	framerate.Display();
-
-	// Rendering of Dear ImGui should happen last before SDL presents the render
-	ImGui::Render();
-	ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData());
-	SDL_RenderPresent(renderer);
+	// Render game here
 }
-
-
-void Game::PostLoop() { }
