@@ -6,6 +6,7 @@
 
 
 // Local library includes
+#include "constants.hpp"
 #include "imgui.h"
 
 
@@ -42,11 +43,13 @@ void DebugController::Init(SDL_Renderer* renderer, int index) {
 	float y_position = 0.0f;
 
 	if (index % 2 == 1) {
-		x_position += 384;
+		x_position += Constants::SCREEN_WIDTH; // 384;
 	}
 	if (index > 1) {
-		y_position += 224;
+		y_position += Constants::SCREEN_HEIGHT;	// 224;
 	}
+
+	x_position += ((Constants::SCREEN_WIDTH / 2.0f) - 256.0f) / 2.0f;	// Account for actual controller width
 
 	logo = Tex2d(
 		IMG_LoadTexture_RW(renderer, SDL_RWFromConstMem(signature_white_png, signature_white_png_len), 1),
@@ -118,6 +121,10 @@ void DebugController::Update(input::Gamepad gamepad) {
 	stick_right.y_position_offset = gamepad.stick_right_y / 5.0f;
 	stick_left.Update();
 	stick_right.Update();
+
+	// if (gamepad.button_a.held) {
+	// 	SDL_GameControllerRumble(gamepad.controller, 0xFFFF, 0xFFFF, 25);
+	// }
 }
 
 

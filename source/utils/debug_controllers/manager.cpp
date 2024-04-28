@@ -25,6 +25,9 @@ void Manager::Update(input::Input& input) {
 	for (int i = 0; i < CONTROLLER_COUNT; i++) {
 		debug_controllers[i].Update(input.gamepads[i]);
 	}
+	if (input.gamepads[0].button_l.held && input.gamepads[0].dpad_down.pressed) {
+		ToggleShowHide();
+	}
 }
 
 

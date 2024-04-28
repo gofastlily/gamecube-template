@@ -9,10 +9,13 @@
 #endif
 
 
-// Linked library includes
+// Standard library includes
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+
+
+// Linked library includes
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
@@ -37,7 +40,7 @@ int SDL_main(int argc, char **argv) {
 
 
 	// Initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER) < 0) {
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER | SDL_INIT_HAPTIC) < 0) {
 		std::cerr << "SDL could not initialize video and audio! SDL Error: " << SDL_GetError() << std::endl;
 	}
 	IMG_Init(IMG_INIT_PNG);
@@ -102,9 +105,6 @@ int SDL_main(int argc, char **argv) {
 			framerate.IncrementState();
 		}
 		debug_controllers_manager.Update(input);
-		if (input.gamepads[0].button_l.held && input.gamepads[0].dpad_down.pressed) {
-			debug_controllers_manager.ToggleShowHide();
-		}
 
 		game.Render();
 		debug_controllers_manager.Render(renderer);

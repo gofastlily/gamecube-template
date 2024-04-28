@@ -1,6 +1,10 @@
 #include "utils.hpp"
 
 
+// Local library includes
+#include "imgui.h"
+
+
 namespace utils {
 
 
@@ -14,6 +18,15 @@ char* Utils::CppStandard() {
 		case 199711L: return (char*)"C++98";
 		default: return (char*)"pre-standard C++";
 	}
+}
+
+
+void Utils::ImGuiTextCentered(const char* text) {
+	float window_width = ImGui::GetWindowSize().x;
+	float text_width = ImGui::CalcTextSize(text).x;
+
+	ImGui::SetCursorPosX((window_width - text_width) * 0.5f);
+	ImGui::Text(text);
 }
 
 
