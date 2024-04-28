@@ -19,9 +19,9 @@ TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source source/engine source/engine/entities source/input \
 				source/game source/utils source/utils/debug_controllers \
-				libraries/imgui data data/debug_controller
+				source/utils/memory_cards libraries/imgui
 DATA		:=	data data/debug_controller data/fonts
-INCLUDES	:=	source libraries/imgui data data/debug_controller
+INCLUDES	:=	source libraries/imgui
 
 #---------------------------------------------------------------------------------
 # options for code generation
