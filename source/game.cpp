@@ -11,6 +11,9 @@
 #include "utils/utils.hpp"
 
 
+namespace game {
+
+
 Game::Game(SDL_Renderer* _renderer, input::Input _input) : renderer(_renderer), input(_input) { }
 
 
@@ -25,3 +28,6 @@ void Game::Render() {
 
 	// Render game here
 }
+
+
+}	// namespace game

@@ -83,7 +83,7 @@ int SDL_main(int argc, char **argv) {
 
 	// Initialize Game
 	input::Input input = input::Input();
-	Game game = Game(renderer, input);
+	game::Game game = game::Game(renderer, input);
 
 	// Initialize Utilities
 	utils::Framerate framerate = utils::Framerate(io);

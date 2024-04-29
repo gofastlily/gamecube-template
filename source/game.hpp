@@ -11,7 +11,11 @@
 
 // Local source includes
 #include "constants.hpp"
+#include "game/entity.hpp"
 #include "input/input.hpp"
+
+
+namespace game {
 
 
 class Game {
@@ -23,3 +27,6 @@ class Game {
 		SDL_GameController *gamepad;
 		input::Input input;
 };
+
+
+}	// namespace game

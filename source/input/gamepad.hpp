@@ -61,8 +61,12 @@ class Gamepad {
 		// Axes
 		float stick_left_x = 0.0f;
 		float stick_left_y = 0.0f;
+		float stick_left_angle = 0.0f;
+		float stick_left_magnitude = 0.0f;
 		float stick_right_x = 0.0f;
 		float stick_right_y = 0.0f;
+		float stick_right_angle = 0.0f;
+		float stick_right_magnitude = 0.0f;
 		float trigger_left = 50.0f;
 		float trigger_right = 50.0f;
 		float deadzone = DEFAULT_DEADZONE;

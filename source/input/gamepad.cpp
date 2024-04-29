@@ -48,6 +48,10 @@ void Gamepad::ProcessAxisInput(SDL_Event& event) {
 			trigger_right = AxisValueWithDeadzone(event.caxis.value);
 			break;
 	}
+	stick_left_angle = atan2(stick_left_x, stick_left_y) * (180.0f / M_PI);
+	stick_right_angle = atan2(stick_right_x, stick_right_y) * (180.0f / M_PI);
+	stick_left_magnitude = abs(hypot(0 - stick_left_x, 0 - stick_left_y));
+	stick_right_magnitude = abs(hypot(0 - stick_right_x, 0 - stick_right_y));
 }
 
 
