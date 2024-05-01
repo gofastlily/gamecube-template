@@ -6,11 +6,9 @@
 
 
 // Local source includes
+#include "constants.hpp"
 #include "input/input.hpp"
 #include "utils/debug_controllers/debug_controller.hpp"
-
-
-#define CONTROLLER_COUNT	4
 
 
 namespace utils {

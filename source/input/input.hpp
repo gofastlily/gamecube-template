@@ -6,10 +6,8 @@
 
 
 // Local library includes
+#include "constants.hpp"
 #include "input/gamepad.hpp"
-
-
-#define CONTROLLER_COUNT	4
 
 
 namespace input {
