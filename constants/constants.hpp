@@ -29,3 +29,12 @@ static const int GCN_CONTROLLER_DPAD_RIGHT = SDL_CONTROLLER_BUTTON_DPAD_RIGHT;
 
 static const float DEFAULT_GAME_OBJECT_MAX_SPEED = 1000.0f;
 static constexpr const char* DEFAULT_GAME_OBJECT_NAME = "¯\\_(^_^)_/¯";
+
+
+static constexpr const char* DEFAULT_PADDLE_NAME = "Paddle";
+static const float DEFAULT_PADDLE_WIDTH = 10.0f;
+static const float DEFAULT_PADDLE_HEIGHT = 65.0f;
+
+
+static constexpr const char* DEFAULT_BALL_NAME = "Ball";
+static const float DEFAULT_BALL_SIZE = 15.0f;
