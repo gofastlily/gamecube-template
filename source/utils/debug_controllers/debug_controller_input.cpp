@@ -18,10 +18,9 @@ namespace debug_controllers {
 DebugControllerInput::DebugControllerInput() { }
 
 
-void DebugControllerInput::Init(SDL_Renderer* renderer, void* png, int png_size, float _x_position, float _y_position) {
+void DebugControllerInput::Init(SDL_Renderer* renderer, const void* png, int png_size, float _x_position, float _y_position) {
 	x_position = _x_position;
 	y_position = _y_position;
-
 	texture = Tex2d(
 		IMG_LoadTexture_RW(renderer, SDL_RWFromConstMem(png, png_size), 1),
 		x_position, y_position, 1.0f, 1.0f

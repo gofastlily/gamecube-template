@@ -18,7 +18,7 @@ namespace debug_controllers {
 class DebugControllerInput {
 	public:
 		DebugControllerInput();
-		void Init(SDL_Renderer*, void*, int, float = 0.0f, float = 0.0f);
+		void Init(SDL_Renderer*, const void*, int, float = 0.0f, float = 0.0f);
 		void Update();
 		void Render(SDL_Renderer*);
 		Tex2d texture;

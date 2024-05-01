@@ -20,7 +20,7 @@ BUILD		:=	build
 SOURCES		:=	source source/engine source/engine/entities source/input \
 				source/game source/utils source/utils/debug_controllers \
 				libraries/imgui data data/debug_controller
-DATA		:=	
+DATA		:=	data data/debug_controller/
 INCLUDES	:=	source libraries/imgui data data/debug_controller
 
 #---------------------------------------------------------------------------------
@@ -128,6 +128,14 @@ $(OUTPUT).dol: $(OUTPUT).elf
 $(OUTPUT).elf: $(OFILES)
 
 $(OFILES_SOURCES) : $(HFILES)
+
+#---------------------------------------------------------------------------------
+# This rule links in binary data with the .png extension
+#---------------------------------------------------------------------------------
+%.png.o	:	%.png
+#---------------------------------------------------------------------------------
+	@echo $(notdir $<)
+	$(bin2o)
 
 -include $(DEPENDS)
 
