@@ -9,7 +9,7 @@
 #include <SDL2/SDL.h>
 
 
-namespace utils {
+namespace engine {
 
 
 Timer::Timer(bool _is_started, bool _is_paused, int _base_ticks, int _ticks_at_pause) : is_started(_is_started), is_paused(_is_paused), base_ticks(_base_ticks), ticks_at_pause(_ticks_at_pause) {}
@@ -68,4 +68,4 @@ bool Timer::IsPaused() {
 }
 
 
-}	// namespace utils
+}	// namespace engine

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace utils {
+namespace engine {
 
 
 class Timer {
@@ -21,4 +21,4 @@ class Timer {
 };
 
 
-}	// namespace utils
+}	// namespace engine
