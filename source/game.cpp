@@ -1,33 +1,23 @@
 #include "game.hpp"
 
 
-// Local library includes
-#include "imgui.h"
-#include "imgui_impl_sdl2.h"
-#include "imgui_impl_sdlrenderer2.h"
-
-
 // Local source includes
-#include "utils/utils.hpp"
+#include "constants.hpp"
 
 
 namespace game {
 
 
-Game::Game(SDL_Renderer* _renderer, input::Input _input) : renderer(_renderer), input(_input) { }
+Game::Game() { }
 
 
-void Game::Update() {}
+void Game::Init() {}
 
 
-void Game::Render() {
-	// Set the draw color
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-	// Clear the screen.
-	SDL_RenderClear(renderer);
+void Game::Update(float delta_seconds, input::Input input) {}
 
-	// Render game here
-}
+
+void Game::Render(SDL_Renderer* renderer) {}
 
 
 }	// namespace game

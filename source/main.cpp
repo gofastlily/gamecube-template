@@ -28,6 +28,7 @@
 
 // Local source includes
 #include "constants.hpp"
+#include "engine/delta_time.hpp"
 #include "game.hpp"
 #include "utils/framerate.hpp"
 #include "utils/utils.hpp"
@@ -83,39 +84,59 @@ int SDL_main(int argc, char **argv) {
 
 	// Initialize Game
 	input::Input input = input::Input();
-	game::Game game = game::Game(renderer, input);
+	game::Game game = game::Game();
+	game.Init();
+
 
 	// Initialize Utilities
 	utils::Framerate framerate = utils::Framerate(io);
 	utils::debug_controllers::Manager debug_controllers_manager = utils::debug_controllers::Manager();
 	debug_controllers_manager.Init(renderer);
+	bool show_main_debug_ui = false;
+
+
+	// Initalize delta_time right before the game loop
+	engine::DeltaTime delta_time = engine::DeltaTime();
 
 
 	while (1) {
+		delta_time.Update();
+
+
 		// Keep ImGui outside loop functions to allow for ImGui anywhere
 		ImGui_ImplSDLRenderer2_NewFrame();
 		ImGui_ImplSDL2_NewFrame();
 		ImGui::NewFrame();
 
+
 		input.ProcessInputs();
 
-		game.Update();
-		// Utils update here
+
+		game.Update(delta_time.delta_in_seconds, input);
+
+
 		if (input.gamepads[0].button_l.held && input.gamepads[0].dpad_up.pressed) {
 			framerate.IncrementState();
 		}
 		debug_controllers_manager.Update(input);
 
-		ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 6.0f, SCREEN_HEIGHT / 4.0f));
-		ImGui::SetNextWindowSize(ImVec2(SCREEN_WIDTH / 3.0f * 2.0f, SCREEN_HEIGHT / 2.0f));
-		ImGui::Begin("Hello, GameCube!", nullptr, ImGuiWindowFlags_NoFocusOnAppearing);
-		ImGui::Text("Written using SDL2 and Dear ImGui\nfor the Nintendo GameCube");
-		ImGui::Separator();
-		ImGui::Text("C++ Standard: %s", utils::Utils::CppStandard());
-		ImGui::End();
+
+		if (input.gamepads[0].button_l.held && input.gamepads[0].dpad_left.pressed) {
+			show_main_debug_ui = !show_main_debug_ui;
+		}
+		if (show_main_debug_ui) {
+			ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 6.0f, SCREEN_HEIGHT / 4.0f));
+			ImGui::SetNextWindowSize(ImVec2(SCREEN_WIDTH / 3.0f * 2.0f, SCREEN_HEIGHT / 2.0f));
+			ImGui::Begin("Hello, GameCube!", nullptr, ImGuiWindowFlags_NoFocusOnAppearing);
+			ImGui::Text("Written using SDL2 and Dear ImGui\nfor the Nintendo GameCube");
+			ImGui::Separator();
+			ImGui::Text("C++ Standard: %s", utils::Utils::CppStandard());
+			ImGui::End();
+		}
 	
-		ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 4.0f, SCREEN_HEIGHT / 10.0f * 8.5f));
-		ImGui::SetNextWindowSize(ImVec2(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 10.0f));
+
+		ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 8.0f, SCREEN_HEIGHT / 10.0f * 8.5f));
+		ImGui::SetNextWindowSize(ImVec2(SCREEN_WIDTH / 5.0f * 4.0f, SCREEN_HEIGHT / 10.0f));
 		ImGui::Begin(
 			"User Prompt", nullptr,
 			ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoBackground \
@@ -125,12 +146,17 @@ int SDL_main(int argc, char **argv) {
 		// utils::Utils::ImGuiTextCentered("Press A for Rumble");
 		ImGui::End();
 
-		game.Render();
-		debug_controllers_manager.Render(renderer);
-		framerate.Display();
 
-		// Rendering of Dear ImGui should happen last before SDL presents the render
-		ImGui::Render();
+		// Clear the screen to render this frame
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+		SDL_RenderClear(renderer);
+
+		// Render here
+		game.Render(renderer);
+		debug_controllers_manager.Render(renderer);
+		framerate.Display();	// Framerate is show here as to appear above any other element
+
+		ImGui::Render();	// Rendering of Dear ImGui must happen last to ensure proper visibility
 		ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData());
 		SDL_RenderPresent(renderer);
 	}
