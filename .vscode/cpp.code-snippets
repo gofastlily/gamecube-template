@@ -1,0 +1,19 @@
+{
+    "C++ Namespace": {
+		"prefix": "#inc",
+		"body": [
+			"#include \"${RELATIVE_FILEPATH/(\\w*)\\\/(.*)\\..+$/$2/}.hpp\"",
+			"",
+			"",
+			"namespace ${1:string} {",
+			"",
+			"",
+			"${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}::${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}() {}",
+			"",
+			"",
+			"}\t// namespace ${1:string}",
+			""
+		],
+		"description": "C++ Namespace"
+	}
+}

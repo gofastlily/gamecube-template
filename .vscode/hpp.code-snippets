@@ -1,0 +1,22 @@
+{
+    "C++ Header": {
+		"prefix": "#pra",
+		"body": [
+			"#pragma once",
+			"",
+			"",
+			"namespace ${2:string} {",
+			"",
+			"",
+			"class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} {",
+			"\tpublic:",
+			"\t\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}();",
+			"};",
+			"",
+			"",
+			"}\t// namespace ${2:string}",
+			""
+		],
+		"description": "C++ Header"
+	}
+}
