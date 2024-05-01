@@ -51,8 +51,8 @@ int SDL_main(int argc, char **argv) {
 		"SDL2",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		Constants::SCREEN_WIDTH,
-		Constants::SCREEN_HEIGHT,
+		SCREEN_WIDTH,
+		SCREEN_HEIGHT,
 		SDL_WINDOW_FULLSCREEN_DESKTOP
 	);
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
@@ -60,7 +60,7 @@ int SDL_main(int argc, char **argv) {
 
 	// Prepare the SDL Rendere
 	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
-	SDL_RenderSetLogicalSize(renderer, Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT);
+	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
 	// Initialize Dear ImGui
@@ -106,16 +106,16 @@ int SDL_main(int argc, char **argv) {
 		}
 		debug_controllers_manager.Update(input);
 
-		ImGui::SetNextWindowPos(ImVec2(Constants::SCREEN_WIDTH / 6.0f, Constants::SCREEN_HEIGHT / 4.0f));
-		ImGui::SetNextWindowSize(ImVec2(Constants::SCREEN_WIDTH / 3.0f * 2.0f, Constants::SCREEN_HEIGHT / 2.0f));
+		ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 6.0f, SCREEN_HEIGHT / 4.0f));
+		ImGui::SetNextWindowSize(ImVec2(SCREEN_WIDTH / 3.0f * 2.0f, SCREEN_HEIGHT / 2.0f));
 		ImGui::Begin("Hello, GameCube!", nullptr, ImGuiWindowFlags_NoFocusOnAppearing);
 		ImGui::Text("Written using SDL2 and Dear ImGui\nfor the Nintendo GameCube");
 		ImGui::Separator();
 		ImGui::Text("C++ Standard: %s", utils::Utils::CppStandard());
 		ImGui::End();
 	
-		ImGui::SetNextWindowPos(ImVec2(Constants::SCREEN_WIDTH / 4.0f, Constants::SCREEN_HEIGHT / 10.0f * 8.5f));
-		ImGui::SetNextWindowSize(ImVec2(Constants::SCREEN_WIDTH / 2.0f, Constants::SCREEN_HEIGHT / 10.0f));
+		ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 4.0f, SCREEN_HEIGHT / 10.0f * 8.5f));
+		ImGui::SetNextWindowSize(ImVec2(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 10.0f));
 		ImGui::Begin(
 			"User Prompt", nullptr,
 			ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoBackground \

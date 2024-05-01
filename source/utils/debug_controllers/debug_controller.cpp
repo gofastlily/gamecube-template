@@ -43,13 +43,13 @@ void DebugController::Init(SDL_Renderer* renderer, int index) {
 	float y_position = 0.0f;
 
 	if (index % 2 == 1) {
-		x_position += Constants::SCREEN_WIDTH;	// 384;
+		x_position += SCREEN_WIDTH;	// 384;
 	}
 	if (index > 1) {
-		y_position += Constants::SCREEN_HEIGHT;	// 224;
+		y_position += SCREEN_HEIGHT;	// 224;
 	}
 
-	x_position += ((Constants::SCREEN_WIDTH / 2.0f) - 256.0f) / 2.0f;	// Account for actual controller width
+	x_position += ((SCREEN_WIDTH / 2.0f) - 256.0f) / 2.0f;	// Account for actual controller width
 
 	logo = Tex2d(
 		IMG_LoadTexture_RW(renderer, SDL_RWFromConstMem(signature_white_png, signature_white_png_len), 1),

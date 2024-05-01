@@ -11,7 +11,6 @@
 
 // Local source includes
 #include "constants.hpp"
-#include "game/entity.hpp"
 #include "input/input.hpp"
 
 
