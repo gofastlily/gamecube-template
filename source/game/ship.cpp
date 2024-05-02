@@ -43,8 +43,10 @@ void Ship::Init(SDL_Renderer* renderer) {
 
 void Ship::Update(float delta_time, input::Gamepad gamepad) {
 	engine::GameObject::Update(delta_time);
-	transform.rotation = gamepad.stick_right.angle;
-	velocity.x = gamepad.stick_left.magnitude / 79.0f * maximum_velocity;	// 79.0f is rougly the limit of a GameCube controller joystick
+	if (gamepad.stick_right.magnitude > 0) {
+		transform.rotation = gamepad.stick_right.angle;
+	}
+	velocity.x = gamepad.stick_left.normalized_magnitude * maximum_velocity;
 	velocity.y = gamepad.stick_left.angle;
 	cockpit_texture.transform.position.x = transform.position.x;
 	cockpit_texture.transform.position.y = transform.position.y;
