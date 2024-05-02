@@ -9,6 +9,10 @@
 #include "input.hpp"
 
 
+// Game includes
+#include "game/ship.hpp"
+
+
 namespace game {
 
 
@@ -18,6 +22,7 @@ class Game {
 		void Init(SDL_Renderer*);
 		void Update(float, input::Input);
 		void Render(SDL_Renderer*);
+		Ship player;
 };
 
 

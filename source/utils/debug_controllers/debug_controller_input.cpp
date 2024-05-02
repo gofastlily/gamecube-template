@@ -21,6 +21,8 @@ void DebugControllerInput::Init(SDL_Renderer* renderer, const void* png, int png
 		IMG_LoadTexture_RW(renderer, SDL_RWFromConstMem(png, png_size), 1),
 		x_position, y_position, 1.0f, 1.0f
 	);
+	texture.offset.x = -128;
+	texture.offset.y = -128;
 }
 
 
