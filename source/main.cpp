@@ -98,7 +98,7 @@ int SDL_main(int argc, char **argv) {
 	utils::Framerate framerate = utils::Framerate(io);
 	utils::debug_controllers::Manager debug_controllers_manager = utils::debug_controllers::Manager();
 	debug_controllers_manager.Init(renderer);
-	bool show_main_debug_ui = false;
+	bool show_main_debug_ui = true;
 
 
 	SDL_RWops* font_raw = SDL_RWFromConstMem(josefin_sans_regular_ttf, josefin_sans_regular_ttf_size);
@@ -148,6 +148,17 @@ int SDL_main(int argc, char **argv) {
 			ImGui::Text("Written using SDL2 and Dear ImGui\nfor the Nintendo GameCube");
 			ImGui::Separator();
 			ImGui::Text("C++ Standard: %s", utils::Utils::CppStandard());
+			ImGui::Separator();
+			ImGui::Text("Controller %i", input.gamepads[0].InstanceID());
+			ImGui::Text("Left Stick Magnitude: %f", input.gamepads[0].stick_left.magnitude);
+			ImGui::Text("Right Stick Magnitude: %f", input.gamepads[0].stick_right.magnitude);
+			ImGui::Text("Trigger Throw: %f, %f", input.gamepads[0].trigger_left.value, input.gamepads[0].trigger_right.value);
+			ImGui::Separator();
+			ImGui::Text("Player Ship: %s (%i)", game.player.name, game.player.id);
+			ImGui::Text("Speed and Direction: %.1f/%.1f, %.1f", game.player.velocity.x, game.player.maximum_velocity, game.player.velocity.y);
+			ImGui::Text("Position: (%.2f, %.2f)", game.player.transform.position.x, game.player.transform.position.y);
+			ImGui::Text("Look Direction: %f", game.player.transform.rotation);
+			ImGui::Text("Cockpit Position: (%.2f, %.2f)", game.player.cockpit_texture.transform.position.x, game.player.cockpit_texture.transform.position.y);
 			ImGui::End();
 		}
 
