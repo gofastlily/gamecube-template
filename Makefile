@@ -20,7 +20,8 @@ BUILD		:=	build
 SOURCES		:=	source source/engine source/engine/entities source/input \
 				source/game source/utils source/utils/debug_controllers \
 				libraries/imgui data data/debug_controller
-DATA		:=	data data/debug_controller data/fonts
+DATA		:=	data data/debug_controller data/fonts \
+				data/player_ship data/projectiles
 INCLUDES	:=	source libraries/imgui data data/debug_controller
 
 #---------------------------------------------------------------------------------
