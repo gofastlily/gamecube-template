@@ -1,5 +1,6 @@
 {
     "editor.indentSize": "tabSize",
+    "C_Cpp.autoAddFileAssociations": false,
     "[cpp]": {
         "editor.insertSpaces": false,
         "editor.tabSize": 4
