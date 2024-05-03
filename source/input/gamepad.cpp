@@ -9,8 +9,14 @@ namespace input {
 
 
 Gamepad::Gamepad() {
-	trigger_left.value = 50.0f;
-	trigger_right.value = 50.0f;
+	stick_left.x.limit = 79.0f;
+	stick_left.y.limit = 79.0f;
+	stick_right.x.limit = 72.0f;
+	stick_right.y.limit = 72.0f;
+	trigger_left.limit = 100.0f;
+	trigger_right.limit = 100.0f;
+	trigger_left.value = 0.5f;
+	trigger_right.value = 0.5f;
 }
 
 
@@ -115,6 +121,12 @@ void Gamepad::Disconnect() {
 
 bool Gamepad::IsConnected() {
 	return SDL_GameControllerGetAttached(controller);
+}
+
+
+void Gamepad::ResetAxisStates() {
+	stick_left.ResetState();
+	stick_right.ResetState();
 }
 
 

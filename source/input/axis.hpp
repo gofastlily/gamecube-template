@@ -17,12 +17,13 @@ class Axis {
 		Axis();
 		void ProcessInput(SDL_Event&);
 		void ResetState();
-		float AxisValueWithDeadzone(float);
+		float RawAxisValueWithDeadzone(float);
 		float value = 0.0f;
 		float previous_value = 0.0f;
 		float deadzone = DEFAULT_DEADZONE;
-		bool changed;
-		bool inverted;
+		float limit = 0.0f;
+		bool changed = false;
+		bool inverted = false;
 };
 
 

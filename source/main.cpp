@@ -125,17 +125,12 @@ int SDL_main(int argc, char **argv) {
 			show_main_debug_ui = !show_main_debug_ui;
 		}
 		if (show_main_debug_ui) {
-			ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 6.0f, SCREEN_HEIGHT / 4.0f));
-			ImGui::SetNextWindowSize(ImVec2(SCREEN_WIDTH / 3.0f * 2.0f, SCREEN_HEIGHT / 2.0f));
+			ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 6.0f, SCREEN_HEIGHT / 6.0f));
+			ImGui::SetNextWindowSize(ImVec2(SCREEN_WIDTH / 3.0f * 2.0f, SCREEN_HEIGHT / 3.0f * 2.0f));
 			ImGui::Begin("Hello, GameCube!", nullptr, ImGuiWindowFlags_NoFocusOnAppearing);
 			ImGui::Text("Written using SDL2 and Dear ImGui\nfor the Nintendo GameCube");
 			ImGui::Separator();
 			ImGui::Text("C++ Standard: %s", utils::Utils::CppStandard());
-			ImGui::Separator();
-			ImGui::Text("Controller %i", input.gamepads[0].InstanceID());
-			ImGui::Text("Left Stick Magnitude: %f", input.gamepads[0].stick_left.magnitude);
-			ImGui::Text("Right Stick Magnitude: %f", input.gamepads[0].stick_right.magnitude);
-			ImGui::Text("Trigger Throw: %f, %f", input.gamepads[0].trigger_left.value, input.gamepads[0].trigger_right.value);
 			ImGui::End();
 		}
 	

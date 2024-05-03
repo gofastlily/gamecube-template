@@ -24,6 +24,7 @@ class Gamepad {
 		bool CheckEventMatchesController(SDL_Event&);
 		void Connect(SDL_GameController* controller);
 		void Disconnect();
+		void ResetAxisStates();
 		void ResetButtonStates();
 		bool IsConnected();
 		SDL_GameController* controller;

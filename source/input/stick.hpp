@@ -15,9 +15,9 @@ class Stick {
 		void ResetState();
 		Axis x;
 		Axis y;
-		float angle;
-		float magnitude;
-		bool changed;
+		float angle = 0.0f;
+		float magnitude = 0.0f;
+		bool changed = false;
 };
 
 

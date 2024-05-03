@@ -8,7 +8,7 @@ Axis::Axis() {}
 
 
 void Axis::ProcessInput(SDL_Event& event) {
-	value = AxisValueWithDeadzone(event.caxis.value);
+	value = RawAxisValueWithDeadzone(event.caxis.value) / limit;
 	if (inverted) {
 		value = -value;
 	}
@@ -24,7 +24,7 @@ void Axis::ResetState() {
 }
 
 
-float Axis::AxisValueWithDeadzone(float value) {
+float Axis::RawAxisValueWithDeadzone(float value) {
 	if (value > deadzone || value < -deadzone) {
 		return value / SDL_JOYSTICK_AXIS_MAX * 100.0f;
 	}

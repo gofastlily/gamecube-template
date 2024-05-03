@@ -20,9 +20,12 @@ void Stick::ProcessInput(SDL_Event& event) {
 			y.ProcessInput(event);
 			break;
 	}
+
+	changed = x.changed || y.changed;
+	if (!changed) return;
+
 	angle = atan2(x.value, -y.value) * (180.0f / M_PI);
 	magnitude = abs(hypot(0 - x.value, 0 - y.value));
-	changed = x.changed || y.changed;
 }
 
 
