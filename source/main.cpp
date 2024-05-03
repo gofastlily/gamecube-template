@@ -131,6 +131,11 @@ int SDL_main(int argc, char **argv) {
 			ImGui::Text("Written using SDL2 and Dear ImGui\nfor the Nintendo GameCube");
 			ImGui::Separator();
 			ImGui::Text("C++ Standard: %s", utils::Utils::CppStandard());
+			ImGui::Separator();
+			ImGui::Text("Controller %i", input.gamepads[0].InstanceID());
+			ImGui::Text("Left Stick Magnitude: %f", input.gamepads[0].stick_left.magnitude);
+			ImGui::Text("Right Stick Magnitude: %f", input.gamepads[0].stick_right.magnitude);
+			ImGui::Text("Trigger Throw: %f, %f", input.gamepads[0].trigger_left.value, input.gamepads[0].trigger_right.value);
 			ImGui::End();
 		}
 	
