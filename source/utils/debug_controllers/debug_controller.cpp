@@ -88,8 +88,8 @@ void DebugController::Update(input::Gamepad gamepad) {
 	is_gamepad_connected = gamepad.IsConnected();
 	if (!is_gamepad_connected) return;
 
-	trigger_l.y_position_offset = gamepad.trigger_left / 4.0f;
-	trigger_r.y_position_offset = gamepad.trigger_right / 4.0f;
+	trigger_l.y_position_offset = gamepad.trigger_left.value / 4.0f;
+	trigger_r.y_position_offset = gamepad.trigger_right.value / 4.0f;
 	trigger_l.Update();
 	trigger_r.Update();
 
@@ -115,10 +115,10 @@ void DebugController::Update(input::Gamepad gamepad) {
 	direction_left.Update();
 	direction_right.Update();
 
-	stick_left.x_position_offset = gamepad.stick_left_x / 5.0f;
-	stick_left.y_position_offset = gamepad.stick_left_y / 5.0f;
-	stick_right.x_position_offset = gamepad.stick_right_x / 5.0f;
-	stick_right.y_position_offset = gamepad.stick_right_y / 5.0f;
+	stick_left.x_position_offset = gamepad.stick_left.x.value / 5.0f;
+	stick_left.y_position_offset = gamepad.stick_left.y.value / 5.0f;
+	stick_right.x_position_offset = gamepad.stick_right.x.value / 5.0f;
+	stick_right.y_position_offset = gamepad.stick_right.y.value / 5.0f;
 	stick_left.Update();
 	stick_right.Update();
 

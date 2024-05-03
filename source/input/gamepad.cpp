@@ -8,7 +8,10 @@
 namespace input {
 
 
-Gamepad::Gamepad() { }
+Gamepad::Gamepad() {
+	trigger_left.value = 50.0f;
+	trigger_right.value = 50.0f;
+}
 
 
 void Gamepad::ProcessInput(SDL_Event& event) {
@@ -30,28 +33,20 @@ void Gamepad::ProcessInput(SDL_Event& event) {
 void Gamepad::ProcessAxisInput(SDL_Event& event) {
 	switch (event.cbutton.button) {
 		case SDL_CONTROLLER_AXIS_LEFTX:
-			stick_left_x = AxisValueWithDeadzone(event.caxis.value);
+		case SDL_CONTROLLER_AXIS_LEFTY:
+			stick_left.ProcessInput(event);
 			break;
 		case SDL_CONTROLLER_AXIS_RIGHTX:
-			stick_right_x = AxisValueWithDeadzone(event.caxis.value);
-			break;
-		case SDL_CONTROLLER_AXIS_LEFTY:
-			stick_left_y = AxisValueWithDeadzone(event.caxis.value);
-			break;
 		case SDL_CONTROLLER_AXIS_RIGHTY:
-			stick_right_y = AxisValueWithDeadzone(event.caxis.value);
+			stick_right.ProcessInput(event);
 			break;
 		case SDL_CONTROLLER_AXIS_TRIGGERLEFT:
-			trigger_left = AxisValueWithDeadzone(event.caxis.value);
+			trigger_left.ProcessInput(event);
 			break;
 		case SDL_CONTROLLER_AXIS_TRIGGERRIGHT:
-			trigger_right = AxisValueWithDeadzone(event.caxis.value);
+			trigger_right.ProcessInput(event);
 			break;
 	}
-	stick_left_angle = atan2(stick_left_x, stick_left_y) * (180.0f / M_PI);
-	stick_right_angle = atan2(stick_right_x, stick_right_y) * (180.0f / M_PI);
-	stick_left_magnitude = abs(hypot(0 - stick_left_x, 0 - stick_left_y));
-	stick_right_magnitude = abs(hypot(0 - stick_right_x, 0 - stick_right_y));
 }
 
 
@@ -94,14 +89,6 @@ void Gamepad::ProcessButtonInput(SDL_Event& event) {
 			dpad_right.ProcessInput(event);
 			break;
 	}
-}
-
-
-float Gamepad::AxisValueWithDeadzone(float value) {
-	if (value > deadzone || value < -deadzone) {
-		return value / SDL_JOYSTICK_AXIS_MAX * 100.0f;
-	}
-	return 0.0f;
 }
 
 
