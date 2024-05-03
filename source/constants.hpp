@@ -1,6 +1,10 @@
 #pragma once
 
 
+// Linked library includes
+#include <SDL2/SDL.h>
+
+
 static const int SCREEN_HEIGHT = 480;
 static const int SCREEN_WIDTH = 640;
 
