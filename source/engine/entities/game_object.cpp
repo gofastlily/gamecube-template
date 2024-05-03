@@ -20,7 +20,7 @@ void GameObject::Update(float delta_time) {
 	if (velocity.y <= -180.0f) velocity.y += 360.0f;
 	if (velocity.y >= 180.0f) velocity.y -= 360.0f;
 	transform.position.x += sin(velocity.y * M_PI / 180.0f) * velocity.x * delta_time;
-	transform.position.y += cos(velocity.y * M_PI / 180.0f) * velocity.x * delta_time;
+	transform.position.y -= cos(velocity.y * M_PI / 180.0f) * velocity.x * delta_time;
 }
 
 
