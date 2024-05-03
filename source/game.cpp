@@ -11,7 +11,7 @@ namespace game {
 Game::Game() { }
 
 
-void Game::Init() {}
+void Game::Init(SDL_Renderer* renderer) {}
 
 
 void Game::Update(float delta_seconds, input::Input input) {}

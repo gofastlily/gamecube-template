@@ -30,8 +30,9 @@ void Stick::ProcessInput(SDL_Event& event) {
 
 	angle = atan2(x.value, -y.value) * (180.0f / M_PI);
 	magnitude = std::sqrt((x.value * x.value) + (y.value * y.value));
+	normalized_magnitude = magnitude;
 	if (magnitude > 1.0f) {
-		magnitude = std::sqrt((x.value * x.value / (magnitude * 2)) + (y.value * y.value / (magnitude * 2)));
+		normalized_magnitude = std::min(std::sqrt((x.value * x.value / (magnitude * 2)) + (y.value * y.value / (magnitude * 2))), magnitude);
 	}
 }
 
@@ -41,6 +42,7 @@ void Stick::ResetState() {
 	y.ResetState();
 	angle = 0.0f;
 	magnitude = 0.0f;
+	normalized_magnitude = 0.0f;
 }
 
 

@@ -85,7 +85,7 @@ int SDL_main(int argc, char **argv) {
 	// Initialize Game
 	input::Input input = input::Input();
 	game::Game game = game::Game();
-	game.Init();
+	game.Init(renderer);
 
 
 	// Initialize Utilities

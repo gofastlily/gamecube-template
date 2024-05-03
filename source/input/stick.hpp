@@ -17,6 +17,7 @@ class Stick {
 		Axis y;
 		float angle = 0.0f;
 		float magnitude = 0.0f;
+		float normalized_magnitude = 0.0f;
 		bool changed = false;
 };
 

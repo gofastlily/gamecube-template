@@ -15,7 +15,7 @@ namespace game {
 class Game {
 	public:
 		Game();
-		void Init();
+		void Init(SDL_Renderer*);
 		void Update(float, input::Input);
 		void Render(SDL_Renderer*);
 };
