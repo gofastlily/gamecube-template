@@ -21,7 +21,7 @@ DebugControllerInput::DebugControllerInput() { }
 void DebugControllerInput::Init(SDL_Renderer* renderer, const void* png, int png_size, float _x_position, float _y_position) {
 	x_position = _x_position;
 	y_position = _y_position;
-	texture = Tex2d(
+	texture = engine::Tex2d(
 		IMG_LoadTexture_RW(renderer, SDL_RWFromConstMem(png, png_size), 1),
 		x_position, y_position, 1.0f, 1.0f
 	);
@@ -29,8 +29,8 @@ void DebugControllerInput::Init(SDL_Renderer* renderer, const void* png, int png
 
 
 void DebugControllerInput::Update() {
-	texture.x_position = x_position + x_position_offset;
-	texture.y_position = y_position + y_position_offset;
+	texture.transform.position.x = x_position + x_position_offset;
+	texture.transform.position.y = y_position + y_position_offset;
 }
 
 

@@ -7,7 +7,7 @@
 
 // Local source includes
 #include "input/gamepad.hpp"
-#include "tex_2d.hpp"
+#include "engine/tex_2d.hpp"
 #include "debug_controller_input.hpp"
 
 
@@ -34,8 +34,8 @@ class DebugController {
 		bool show;
 		bool is_gamepad_connected = false;
 		SDL_Rect texture_rect;
-		Tex2d logo;
-		Tex2d outline;
+		engine::Tex2d logo;
+		engine::Tex2d outline;
 		DebugControllerInput button_start = DebugControllerInput();
 		DebugControllerInput button_a = DebugControllerInput();
 		DebugControllerInput button_b = DebugControllerInput();

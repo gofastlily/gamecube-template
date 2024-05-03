@@ -51,11 +51,11 @@ void DebugController::Init(SDL_Renderer* renderer, int index) {
 
 	x_position += ((SCREEN_WIDTH / 2.0f) - 256.0f) / 2.0f;	// Account for actual controller width
 
-	logo = Tex2d(
+	logo = engine::Tex2d(
 		IMG_LoadTexture_RW(renderer, SDL_RWFromConstMem(signature_white_png, signature_white_png_size), 1),
 		x_position + 86.0f, y_position + 66.0f, 0.7f, 0.7f
 	);
-	outline = Tex2d(
+	outline = engine::Tex2d(
 		IMG_LoadTexture_RW(renderer, SDL_RWFromConstMem(debug_controller_outline_png, debug_controller_outline_png_size), 1),
 		x_position + 0.0f, y_position + 0.0f, 1.0f, 1.0f
 	);

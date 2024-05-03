@@ -6,7 +6,7 @@
 
 
 // Local source includes
-#include "tex_2d.hpp"
+#include "engine/tex_2d.hpp"
 
 
 namespace utils {
@@ -21,7 +21,7 @@ class DebugControllerInput {
 		void Init(SDL_Renderer*, const void*, int, float = 0.0f, float = 0.0f);
 		void Update();
 		void Render(SDL_Renderer*);
-		Tex2d texture;
+		engine::Tex2d texture;
 		float x_position = 0.0f;
 		float y_position = 0.0f;
 		float x_position_offset = 0.0f;
