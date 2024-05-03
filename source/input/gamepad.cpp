@@ -9,14 +9,18 @@ namespace input {
 
 
 Gamepad::Gamepad() {
-	stick_left.x.limit = 79.0f;
-	stick_left.y.limit = 79.0f;
-	stick_right.x.limit = 72.0f;
-	stick_right.y.limit = 72.0f;
-	trigger_left.limit = 100.0f;
-	trigger_right.limit = 100.0f;
-	trigger_left.value = 0.5f;
-	trigger_right.value = 0.5f;
+	stick_left.x.minimum_limit = -78.5f;
+	stick_left.y.minimum_limit = -78.5f;
+	stick_left.x.maximum_limit = 78.5f;
+	stick_left.y.maximum_limit = 78.5f;
+	stick_right.x.minimum_limit = -71.5f;
+	stick_right.y.minimum_limit = -71.5f;
+	stick_right.x.maximum_limit = 71.5f;
+	stick_right.y.maximum_limit = 71.5f;
+	trigger_left.minimum_limit = 50.0f;
+	trigger_right.minimum_limit = 50.0f;
+	trigger_left.maximum_limit = 99.0f;
+	trigger_right.maximum_limit = 99.0f;
 }
 
 

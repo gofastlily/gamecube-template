@@ -1,6 +1,14 @@
 #include "input/axis.hpp"
 
 
+// Standard library includes
+#include <algorithm>
+
+
+// Local library includes
+#include "utils/utils.hpp"
+
+
 namespace input {
 
 
@@ -8,7 +16,8 @@ Axis::Axis() {}
 
 
 void Axis::ProcessInput(SDL_Event& event) {
-	value = RawAxisValueWithDeadzone(event.caxis.value) / limit;
+	float raw_value = RawAxisValueWithDeadzone(event.caxis.value);
+	value = std::min(std::max((std::abs(raw_value) - minimum_limit) / (maximum_limit - minimum_limit), 0.0f), 1.0f) * utils::Utils::SignOfFloat(raw_value);
 	if (inverted) {
 		value = -value;
 	}

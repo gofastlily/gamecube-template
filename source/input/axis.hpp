@@ -21,7 +21,8 @@ class Axis {
 		float value = 0.0f;
 		float previous_value = 0.0f;
 		float deadzone = DEFAULT_DEADZONE;
-		float limit = 0.0f;
+		float minimum_limit = 0.0f;
+		float maximum_limit = 100.0f;
 		bool changed = false;
 		bool inverted = false;
 };

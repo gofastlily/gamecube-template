@@ -30,4 +30,14 @@ void Utils::ImGuiTextCentered(const char* text) {
 }
 
 
+int Utils::SignOfInt(int value) {
+    return (0 < value) - (value < 0);
+}
+
+
+float Utils::SignOfFloat(float value) {
+    return (0.0f < value) - (value < 0.0f);
+}
+
+
 }	// namespace utils

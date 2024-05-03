@@ -1,6 +1,10 @@
 #include "input/stick.hpp"
 
 
+// Standard library includes
+#include <algorithm>
+
+
 namespace input {
 
 
@@ -25,7 +29,10 @@ void Stick::ProcessInput(SDL_Event& event) {
 	if (!changed) return;
 
 	angle = atan2(x.value, -y.value) * (180.0f / M_PI);
-	magnitude = abs(hypot(0 - x.value, 0 - y.value));
+	magnitude = std::sqrt((x.value * x.value) + (y.value * y.value));
+	if (magnitude > 1.0f) {
+		magnitude = std::sqrt((x.value * x.value / (magnitude * 2)) + (y.value * y.value / (magnitude * 2)));
+	}
 }
 
 

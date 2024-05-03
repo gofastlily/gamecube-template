@@ -71,16 +71,13 @@ void DebugController::Init(SDL_Renderer* renderer, int index) {
 	direction_right.Init(renderer, debug_controller_direction_right_png, debug_controller_direction_right_png_size, x_position + 89.0f, y_position + 171.0f);
 	stick_left.Init(renderer, debug_controller_stick_left_png, debug_controller_stick_left_png_size, x_position + 17.0f, y_position + 94.0f);
 	stick_right.Init(renderer, debug_controller_stick_right_png, debug_controller_stick_right_png_size, x_position + 154.0f, y_position + 163.0f);
-	trigger_l.Init(renderer, debug_controller_trigger_l_png, debug_controller_trigger_l_png_size, x_position + 13.0f, y_position + 27.0f);
-	trigger_r.Init(renderer, debug_controller_trigger_r_png, debug_controller_trigger_r_png_size, x_position + 182.0f, y_position + 24.0f);
+	trigger_l.Init(renderer, debug_controller_trigger_l_png, debug_controller_trigger_l_png_size, x_position + 13.0f, y_position + 39.5f);
+	trigger_r.Init(renderer, debug_controller_trigger_r_png, debug_controller_trigger_r_png_size, x_position + 182.0f, y_position + 37.5f);
 
 	stick_left.show = true;
 	stick_right.show = true;
 	trigger_l.show = true;
 	trigger_r.show = true;
-
-	trigger_l.y_position_offset = 12.5f;
-	trigger_r.y_position_offset = 12.5f;
 }
 
 
@@ -88,8 +85,8 @@ void DebugController::Update(input::Gamepad gamepad) {
 	is_gamepad_connected = gamepad.IsConnected();
 	if (!is_gamepad_connected) return;
 
-	trigger_l.y_position_offset = gamepad.trigger_left.value * 25.0f;
-	trigger_r.y_position_offset = gamepad.trigger_right.value * 25.0f;
+	trigger_l.y_position_offset = gamepad.trigger_left.value * 12.5f;
+	trigger_r.y_position_offset = gamepad.trigger_right.value * 12.5f;
 	trigger_l.Update();
 	trigger_r.Update();
 
@@ -115,10 +112,10 @@ void DebugController::Update(input::Gamepad gamepad) {
 	direction_left.Update();
 	direction_right.Update();
 
-	stick_left.x_position_offset = gamepad.stick_left.x.value * 25.0f;
-	stick_left.y_position_offset = gamepad.stick_left.y.value * 25.0f;
-	stick_right.x_position_offset = gamepad.stick_right.x.value * 20.0f;
-	stick_right.y_position_offset = gamepad.stick_right.y.value * 20.0f;
+	stick_left.x_position_offset = gamepad.stick_left.x.value * 18.0f;
+	stick_left.y_position_offset = gamepad.stick_left.y.value * 18.0f;
+	stick_right.x_position_offset = gamepad.stick_right.x.value * 14.0f;
+	stick_right.y_position_offset = gamepad.stick_right.y.value * 14.0f;
 	stick_left.Update();
 	stick_right.Update();
 
