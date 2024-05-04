@@ -1,6 +1,10 @@
 #include "utils.hpp"
 
 
+// Standard library includes
+#include <cmath>
+
+
 // Local library includes
 #include "imgui.h"
 
@@ -48,5 +52,8 @@ float Utils::SignOfFloat(float value) {
     return (0.0f < value) - (value < 0.0f);
 }
 
+engine::Vector2 Utils::PointOnCircle(float angle, float radius) {
+    return engine::Vector2(std::sin(angle) * radius, std::cos(angle) * -radius);
+}
 
 }	// namespace utils

@@ -5,6 +5,10 @@
 #include "imgui.h"
 
 
+// Local source includes
+#include "engine/vector2.hpp"
+
+
 namespace utils {
 
 
@@ -15,6 +19,7 @@ class Utils {
 		static void ImGuiTextColoredCentered(const ImColor, const char*);
 		static int SignOfInt(int value);
 		static float SignOfFloat(float value);
+		static engine::Vector2 PointOnCircle(float, float);
 };
 
 
