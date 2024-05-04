@@ -14,6 +14,8 @@ GameObject::GameObject(char* _name) {
 
 
 void GameObject::Update(float delta_time) {
+	if (!active) return;
+
 	if (transform.rotation <= -180.0f) transform.rotation += 360.0f;
 	if (transform.rotation >= 180.0f) transform.rotation -= 360.0f;
 	if (velocity.x > maximum_velocity) velocity.x = maximum_velocity;
