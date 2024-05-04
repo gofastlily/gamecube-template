@@ -29,3 +29,8 @@ static const int GCN_CONTROLLER_DPAD_RIGHT = SDL_CONTROLLER_BUTTON_DPAD_RIGHT;
 
 static const float DEFAULT_GAME_OBJECT_MAX_SPEED = 1000.0f;
 static constexpr const char* DEFAULT_GAME_OBJECT_NAME = "¯\\_(^_^)_/¯";
+
+
+static const int PLAYER_MAXIMUM_VELOCITY = 100;
+static const int PLAYER_PROJECTILE_COUNT = 50;
+static const float PLAYER_PROJECTILE_VELOCITY = 350.0f;

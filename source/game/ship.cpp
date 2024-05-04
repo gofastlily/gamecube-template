@@ -1,14 +1,23 @@
 #include "game/ship.hpp"
 
 
+// Standard library includes
+#include <cmath>
+
+
 // Linked library includes
 #include <SDL2/SDL_image.h>
+
+
+// Local source includes
+#include "utils/utils.hpp"
 
 
 // Local asset includes
 #include "cockpit_png.h"
 #include "thruster_left_png.h"
 #include "thruster_right_png.h"
+#include "ship.hpp"
 
 
 namespace game {
@@ -38,6 +47,13 @@ void Ship::Init(SDL_Renderer* renderer) {
 	);
 	thruster_right_texture.offset.x = -32;
 	thruster_right_texture.offset.y = -32;
+	
+	for (int i = 0; i < projectile_count; i++) {
+		projectiles.push_back(Projectile());
+		projectiles[i].Init(renderer);
+	}
+
+	maximum_velocity = PLAYER_MAXIMUM_VELOCITY;
 }
 
 
@@ -48,6 +64,10 @@ void Ship::Update(float delta_time, input::Gamepad gamepad) {
 	}
 	velocity.x = gamepad.stick_left.normalized_magnitude * maximum_velocity;
 	velocity.y = gamepad.stick_left.angle;
+}
+
+
+void Ship::Render(SDL_Renderer* renderer) {
 	cockpit_texture.transform.position.x = transform.position.x;
 	cockpit_texture.transform.position.y = transform.position.y;
 	cockpit_texture.transform.rotation = transform.rotation;
@@ -57,13 +77,25 @@ void Ship::Update(float delta_time, input::Gamepad gamepad) {
 	thruster_right_texture.transform.position.x = transform.position.x;
 	thruster_right_texture.transform.position.y = transform.position.y;
 	thruster_right_texture.transform.rotation = transform.rotation;
-}
-
-
-void Ship::Render(SDL_Renderer* renderer) {
 	cockpit_texture.Render(renderer);
 	thruster_left_texture.Render(renderer);
 	thruster_right_texture.Render(renderer);
+}
+
+
+void Ship::Fire() {
+	Projectile& projectile = projectiles[projectiles_fired % projectile_count];
+	if (projectiles[projectiles_fired % projectile_count].active) return;
+
+	projectiles_fired++;
+	projectile.velocity.x = PLAYER_PROJECTILE_VELOCITY;
+	projectile.velocity.y = transform.rotation;
+	engine::Vector2 point = utils::Utils::PointOnCircle(projectile.velocity.y, 30.0f);
+	projectile.transform.position.x = point.x + transform.position.x - 6.0f;
+	projectile.transform.position.y = point.y + transform.position.y - 6.0f;
+	projectile.lifetime = 6000;
+	projectile.active = true;
+	projectile.timer.Start();
 }
 
 

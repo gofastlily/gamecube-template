@@ -23,6 +23,7 @@ class GameObject : public Entity {
 		float maximum_velocity = DEFAULT_GAME_OBJECT_MAX_SPEED;
 		Vector2 velocity;
 		Transform2d transform;
+		bool active;
 };
 
 

@@ -143,7 +143,7 @@ int SDL_main(int argc, char **argv) {
 			ImGui::Text("C++ Standard: %s", utils::Utils::CppStandard());
 			ImGui::Separator();
 			ImGui::Text("Controller %i", input.gamepads[0].InstanceID());
-			ImGui::Text("Left Stick Magnitude: %f", input.gamepads[0].stick_left.magnitude);
+			ImGui::Text("Left Stick Magnitude: (%f, %f)", input.gamepads[0].stick_left.magnitude, input.gamepads[0].stick_left.normalized_magnitude);
 			ImGui::Text("Right Stick Magnitude: %f", input.gamepads[0].stick_right.magnitude);
 			ImGui::Text("Trigger Throw: %f, %f", input.gamepads[0].trigger_left.value, input.gamepads[0].trigger_right.value);
 			ImGui::Separator();
@@ -152,6 +152,7 @@ int SDL_main(int argc, char **argv) {
 			ImGui::Text("Position: (%.2f, %.2f)", game.player.transform.position.x, game.player.transform.position.y);
 			ImGui::Text("Look Direction: %f", game.player.transform.rotation);
 			ImGui::Text("Cockpit Position: (%.2f, %.2f)", game.player.cockpit_texture.transform.position.x, game.player.cockpit_texture.transform.position.y);
+			ImGui::Text("Shots Fired: %i (%i)", game.player.projectiles_fired, game.player.projectiles_fired % game.player.projectile_count);
 			ImGui::End();
 		}
 
