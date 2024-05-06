@@ -106,9 +106,18 @@ file(GLOB IMGUI_SOURCES ${IMGUI_PATH}/*.cpp)
 add_library(ImGui STATIC ${IMGUI_SOURCES})
 target_include_directories(ImGui PUBLIC ${IMGUI_PATH})
 target_link_libraries(ImGui PUBLIC
-	${SDL2_LIBRARIES}
+	SDL2::SDL2
 )
 
+set(BOX2D_PATH "${PROJECT_SOURCE_DIR}/libraries/box2d")
+file(GLOB BOX2D_SOURCES ${BOX2D_PATH}/src/*/*.cpp)
+add_library(Box2d STATIC ${BOX2D_SOURCES})
+target_include_directories(Box2d PUBLIC ${BOX2D_PATH}/include)
+target_link_libraries(Box2d PUBLIC
+	SDL2::SDL2
+	SDL2::SDL2main
+)
+target_link_libraries(${PROJECT_NAME} PUBLIC Box2d)
 
 find_package(Freetype REQUIRED)
 
