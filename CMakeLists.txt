@@ -93,5 +93,16 @@ target_link_libraries(ImGui PUBLIC
 	SDL2::SDL2-static
 )
 
+
+set(BOX2D_PATH "${PROJECT_SOURCE_DIR}/libraries/box2d")
+file(GLOB BOX2D_SOURCES ${BOX2D_PATH}/src/*/*.cpp)
+add_library(Box2d STATIC ${BOX2D_SOURCES})
+target_include_directories(Box2d PUBLIC ${BOX2D_PATH}/include)
+target_link_libraries(Box2d PUBLIC
+	SDL2::SDL2-static
+)
+target_link_libraries(${PROJECT_NAME} PUBLIC Box2d)
+
+
 # Helper to create the .dol file
 ogc_create_dol(${PROJECT_NAME})

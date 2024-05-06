@@ -1,6 +1,7 @@
 add_library(Utils
 	framerate.cpp
 	utils.cpp
+	draw_box2d.cpp
 )
 
 target_include_directories(Utils INTERFACE
@@ -9,6 +10,7 @@ target_include_directories(Utils INTERFACE
 
 target_link_libraries(Utils PUBLIC
 	compiler_flags
+	Box2d
 	ImGui
 	general_assets
 	debug_controller_assets

@@ -25,7 +25,8 @@
 #include "constants.hpp"
 #include "engine/delta_time.hpp"
 #include "engine/text.hpp"
-#include "game/game.hpp"
+#include "game.hpp"
+#include "utils/draw_box2d.hpp"
 #include "utils/framerate.hpp"
 #include "utils/utils.hpp"
 #include "utils/debug_controllers/manager.hpp"
@@ -91,7 +92,7 @@ int SDL_main(int argc, char **argv) {
 	utils::Framerate framerate = utils::Framerate(io);
 	utils::debug_controllers::Manager debug_controllers_manager = utils::debug_controllers::Manager();
 	debug_controllers_manager.Init(renderer);
-	bool show_main_debug_ui = true;
+	bool show_main_debug_ui = false;
 
 
 	SDL_RWops* font_raw = SDL_RWFromConstMem(josefin_sans_regular_ttf, josefin_sans_regular_ttf_size);
@@ -138,7 +139,7 @@ int SDL_main(int argc, char **argv) {
 			ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 6.0f, SCREEN_HEIGHT / 6.0f));
 			ImGui::SetNextWindowSize(ImVec2(SCREEN_WIDTH / 3.0f * 2.0f, SCREEN_HEIGHT / 3.0f * 2.0f));
 			ImGui::Begin("Hello, GameCube!", nullptr, ImGuiWindowFlags_NoFocusOnAppearing);
-			ImGui::Text("Written using SDL2 and Dear ImGui\nfor the Nintendo GameCube");
+			ImGui::Text("Written using SDL2, Dear ImGui, and Box2D\nfor the Nintendo GameCube");
 			ImGui::Separator();
 			ImGui::Text("C++ Standard: %s", utils::Utils::CppStandard());
 			ImGui::End();
