@@ -59,7 +59,7 @@ int SDL_main(int argc, char **argv) {
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 
 
-	// Prepare the SDL Rendere
+	// Prepare the SDL Renderer
 	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
 	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
 
