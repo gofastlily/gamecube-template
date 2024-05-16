@@ -29,10 +29,15 @@
 // Local source includes
 #include "constants.hpp"
 #include "engine/delta_time.hpp"
+#include "engine/text.hpp"
 #include "game.hpp"
 #include "utils/framerate.hpp"
 #include "utils/utils.hpp"
 #include "utils/debug_controllers/manager.hpp"
+
+
+// Local asset includes
+#include "josefin_sans_regular_ttf.h"
 
 
 int SDL_main(int argc, char **argv) {
@@ -45,6 +50,7 @@ int SDL_main(int argc, char **argv) {
 		std::cerr << "SDL could not initialize video and audio! SDL Error: " << SDL_GetError() << std::endl;
 	}
 	IMG_Init(IMG_INIT_PNG);
+	TTF_Init();
 
 
 	// Prepare the SDL Window
@@ -95,6 +101,17 @@ int SDL_main(int argc, char **argv) {
 	bool show_main_debug_ui = false;
 
 
+	SDL_RWops* font_raw = SDL_RWFromConstMem(josefin_sans_regular_ttf, josefin_sans_regular_ttf_size);
+	TTF_Font* font = TTF_OpenFontRW(font_raw, 1, 24);
+	engine::Text ui_prompt_text = engine::Text(
+		renderer,
+		"Press L and the D-Pad to toggle debug UI",
+		font,
+		SDL_Color(220, 220, 220),
+		SCREEN_WIDTH / 10.0f * 8.0f
+	);
+
+
 	// Initalize delta_time right before the game loop
 	engine::DeltaTime delta_time = engine::DeltaTime();
 
@@ -133,18 +150,6 @@ int SDL_main(int argc, char **argv) {
 			ImGui::Text("C++ Standard: %s", utils::Utils::CppStandard());
 			ImGui::End();
 		}
-	
-
-		ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 8.0f, SCREEN_HEIGHT / 10.0f * 8.5f));
-		ImGui::SetNextWindowSize(ImVec2(SCREEN_WIDTH / 5.0f * 4.0f, SCREEN_HEIGHT / 10.0f));
-		ImGui::Begin(
-			"User Prompt", nullptr,
-			ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoBackground \
-			| ImGuiWindowFlags_NoInputs | ImGuiWindowFlags_NoFocusOnAppearing
-		);
-		utils::Utils::ImGuiTextCentered("Press L the D-Pad to toggle debug UI");
-		// utils::Utils::ImGuiTextCentered("Press A for Rumble");
-		ImGui::End();
 
 
 		// Clear the screen to render this frame
@@ -154,6 +159,16 @@ int SDL_main(int argc, char **argv) {
 		// Render here
 		game.Render(renderer);
 		debug_controllers_manager.Render(renderer);
+
+
+		// Debug ui prompt text here
+		ui_prompt_text.rect.x = SCREEN_WIDTH / 2.0f - ui_prompt_text.surface->w / 2.0f;
+		ui_prompt_text.rect.y = SCREEN_HEIGHT / 10.0f * 9.0f;
+		ui_prompt_text.rect.w = ui_prompt_text.surface->w;
+		ui_prompt_text.rect.h = ui_prompt_text.surface->h;
+		ui_prompt_text.Render();
+
+
 		framerate.Display();	// Framerate is show here as to appear above any other element
 
 		ImGui::Render();	// Rendering of Dear ImGui must happen last to ensure proper visibility
@@ -165,6 +180,7 @@ int SDL_main(int argc, char **argv) {
 	// Tear down SDL
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
+	TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
 

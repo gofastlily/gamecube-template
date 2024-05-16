@@ -20,7 +20,7 @@ BUILD		:=	build
 SOURCES		:=	source source/engine source/engine/entities source/input \
 				source/game source/utils source/utils/debug_controllers \
 				libraries/imgui data data/debug_controller
-DATA		:=	data data/debug_controller/
+DATA		:=	data data/debug_controller data/fonts
 INCLUDES	:=	source libraries/imgui data data/debug_controller
 
 #---------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ LDFLAGS	=	-g $(MACHDEP) -Wl,-Map,$(notdir $@).map
 #---------------------------------------------------------------------------------
 LIBS	:=	-lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2main -lSDL2 \
 			`$(PREFIX)pkg-config freetype2 libpng libjpeg --libs` \
-			-lfat -laesnd
+			-lfat -laesnd -lharfbuzz
 LIBS	+= -logc -lm -ldb
 
 #---------------------------------------------------------------------------------
@@ -136,6 +136,15 @@ $(OFILES_SOURCES) : $(HFILES)
 #---------------------------------------------------------------------------------
 	@echo $(notdir $<)
 	$(bin2o)
+
+#---------------------------------------------------------------------------------
+# This rule links in binary data with the .ttf extension
+#---------------------------------------------------------------------------------
+%.ttf.o	:	%.ttf
+#---------------------------------------------------------------------------------
+	@echo $(notdir $<)
+	$(bin2o)
+
 
 -include $(DEPENDS)
 
