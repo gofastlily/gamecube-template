@@ -15,6 +15,7 @@ namespace engine {
 
 class Text {
 	public:
+		Text();
 		Text(SDL_Renderer*, std::string, TTF_Font*, SDL_Color, int);
 		void CreateSurface();
 		void CreateTexture();

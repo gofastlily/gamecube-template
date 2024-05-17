@@ -5,6 +5,9 @@
 namespace engine {
 
 
+Text::Text() {};
+
+
 Text::Text(SDL_Renderer* renderer, std::string text, TTF_Font* font, SDL_Color color, int wrap_width)
 : renderer(renderer), value(text), font(font), color(color), wrap_width(wrap_width) {
 	CreateSurface();
