@@ -27,5 +27,5 @@ static const int GCN_CONTROLLER_DPAD_LEFT = SDL_CONTROLLER_BUTTON_DPAD_LEFT;
 static const int GCN_CONTROLLER_DPAD_RIGHT = SDL_CONTROLLER_BUTTON_DPAD_RIGHT;
 
 
-static const int DEFAULT_GAME_OBJECT_MAX_SPEED = 50;
+static const float DEFAULT_GAME_OBJECT_MAX_SPEED = 1000.0f;
 static constexpr const char* DEFAULT_GAME_OBJECT_NAME = "¯\\_(^_^)_/¯";
