@@ -1,10 +1,6 @@
 #include "game.hpp"
 
 
-// Local source includes
-#include "constants.hpp"
-
-
 namespace game {
 
 
