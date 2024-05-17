@@ -30,6 +30,15 @@ void Utils::ImGuiTextCentered(const char* text) {
 }
 
 
+void Utils::ImGuiTextColoredCentered(const ImColor color, const char* text) {
+	float window_width = ImGui::GetWindowSize().x;
+	float text_width = ImGui::CalcTextSize(text).x;
+
+	ImGui::SetCursorPosX((window_width - text_width) * 0.5f);
+	ImGui::TextColored(color, text);
+}
+
+
 int Utils::SignOfInt(int value) {
     return (0 < value) - (value < 0);
 }
