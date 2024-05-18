@@ -59,11 +59,17 @@ void Ship::Init(SDL_Renderer* renderer) {
 
 void Ship::Update(float delta_time, input::Gamepad gamepad) {
 	engine::GameObject::Update(delta_time);
+
 	if (gamepad.stick_right.magnitude > 0) {
 		transform.rotation = gamepad.stick_right.angle;
 	}
+
 	velocity.x = gamepad.stick_left.normalized_magnitude * maximum_velocity;
 	velocity.y = gamepad.stick_left.angle;
+
+	if (fire_rate_timer > 0.0f) {
+		fire_rate_timer -= delta_time;
+	}
 }
 
 
@@ -84,9 +90,12 @@ void Ship::Render(SDL_Renderer* renderer) {
 
 
 void Ship::Fire() {
-	Projectile& projectile = projectiles[projectiles_fired % projectile_count];
+	if (fire_rate_timer > 0.0f) return;
 	if (projectiles[projectiles_fired % projectile_count].active) return;
 
+	fire_rate_timer = fire_rate;
+
+	Projectile& projectile = projectiles[projectiles_fired % projectile_count];
 	projectiles_fired++;
 	projectile.velocity.x = PLAYER_PROJECTILE_VELOCITY;
 	projectile.velocity.y = transform.rotation;

@@ -34,3 +34,4 @@ static constexpr const char* DEFAULT_GAME_OBJECT_NAME = "¯\\_(^_^)_/¯";
 static const int PLAYER_MAXIMUM_VELOCITY = 100;
 static const int PLAYER_PROJECTILE_COUNT = 50;
 static const float PLAYER_PROJECTILE_VELOCITY = 350.0f;
+static const float PLAYER_FIRE_RATE = 0.35f;

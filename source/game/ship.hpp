@@ -35,6 +35,8 @@ struct Ship : public engine::GameObject {
 	std::vector<Projectile> projectiles;
 	int projectile_count = PLAYER_PROJECTILE_COUNT;
 	int projectiles_fired = 0;
+	float fire_rate = PLAYER_FIRE_RATE;
+	float fire_rate_timer = 0.0f;
 };
 
 

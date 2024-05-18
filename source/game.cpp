@@ -22,7 +22,7 @@ void Game::Init(SDL_Renderer* renderer) {
 
 void Game::Update(float delta_seconds, input::Input input) {
 	player.Update(delta_seconds, input.gamepads[0]);
-	if (input.gamepads[0].button_z.pressed) {
+	if (input.gamepads[0].button_r.pressed || input.gamepads[0].button_r.held) {
 		player.Fire();
 	}
 
