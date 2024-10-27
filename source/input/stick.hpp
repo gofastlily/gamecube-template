@@ -2,13 +2,14 @@
 
 
 // Local library includes
+#include "engine/entities/entity.hpp"
 #include "input/axis.hpp"
 
 
 namespace input {
 
 
-class Stick {
+class Stick : public engine::Entity {
 	public:
 		Stick();
 		void ProcessInput(SDL_Event&);

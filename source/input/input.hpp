@@ -7,13 +7,14 @@
 
 // Local library includes
 #include "constants.hpp"
+#include "engine/entities/entity.hpp"
 #include "input/gamepad.hpp"
 
 
 namespace input {
 
 
-class Input {
+class Input : public engine::Entity {
 	public:
 		Input();
 		void ProcessInputs();

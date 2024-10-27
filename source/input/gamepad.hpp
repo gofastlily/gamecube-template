@@ -6,6 +6,7 @@
 
 
 // Local library includes
+#include "engine/entities/entity.hpp"
 #include "input/axis.hpp"
 #include "input/button.hpp"
 #include "input/stick.hpp"
@@ -14,7 +15,7 @@
 namespace input {
 
 
-class Gamepad {
+class Gamepad : public engine::Entity {
 	public:
 		Gamepad();
 		void ProcessInput(SDL_Event&);

@@ -8,12 +8,13 @@
 // Local source includes
 #include "engine/transform2d.hpp"
 #include "engine/vector2.hpp"
+#include "engine/entities/entity.hpp"
 
 
 namespace engine {
 
 
-class Tex2d {
+class Tex2d : public Entity {
 	public:
 		Tex2d();
 		Tex2d(SDL_Texture*, float, float, float = 1.0f, float = 1.0f);

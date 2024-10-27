@@ -1,10 +1,14 @@
 #pragma once
 
 
+// Local source includes
+#include "engine/entities/entity.hpp"
+
+
 namespace engine {
 
 
-class Timer {
+class Timer : public Entity {
 	public:
 		Timer(bool=false, bool=false, int=0, int=0);
 		void Start();

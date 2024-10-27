@@ -10,10 +10,14 @@
 #include <SDL2/SDL_ttf.h>
 
 
+// Local source includes
+#include "engine/entities/entity.hpp"
+
+
 namespace engine {
 
 
-class Text {
+class Text : public Entity {
 	public:
 		Text();
 		Text(SDL_Renderer*, std::string, TTF_Font*, SDL_Color, int);

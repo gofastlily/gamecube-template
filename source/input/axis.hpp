@@ -7,12 +7,13 @@
 
 // Local library includes
 #include "constants.hpp"
+#include "engine/entities/entity.hpp"
 
 
 namespace input {
 
 
-class Axis {
+class Axis : public engine::Entity {
 	public:
 		Axis();
 		void ProcessInput(SDL_Event&);

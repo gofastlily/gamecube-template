@@ -5,10 +5,14 @@
 #include <SDL2/SDL.h>
 
 
+// Local source includes
+#include "engine/entities/entity.hpp"
+
+
 namespace input {
 
 
-class Button {
+class Button : public engine::Entity {
 	public:
 		Button();
 		void ProcessInput(SDL_Event&);
