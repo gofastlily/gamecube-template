@@ -1,4 +1,4 @@
-#include "input/stick.hpp"
+#include "stick.hpp"
 
 
 // Standard library includes

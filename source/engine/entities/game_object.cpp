@@ -1,4 +1,4 @@
-#include "engine/entities/game_object.hpp"
+#include "game_object.hpp"
 
 
 // Standard library includes

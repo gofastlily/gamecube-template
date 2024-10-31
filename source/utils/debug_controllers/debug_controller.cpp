@@ -1,4 +1,4 @@
-#include "utils/debug_controllers/debug_controller.hpp"
+#include "debug_controller.hpp"
 
 
 // Linked library includes
@@ -7,7 +7,6 @@
 
 // Local library includes
 #include "constants.hpp"
-#include "imgui.h"
 
 
 // Local asset includes
@@ -52,27 +51,27 @@ void DebugController::Init(SDL_Renderer* renderer, int index) {
 	x_position += ((SCREEN_WIDTH / 2.0f) - 256.0f) / 2.0f;	// Account for actual controller width
 
 	logo = engine::Tex2d(
-		IMG_LoadTexture_RW(renderer, SDL_RWFromConstMem(signature_white_png, signature_white_png_size), 1),
+		IMG_LoadTexture_RW(renderer, SDL_RWFromConstMem(SIGNATURE_WHITE_PNG, SIGNATURE_WHITE_PNG_SIZE), 1),
 		x_position + 86.0f, y_position + 66.0f, 0.7f, 0.7f
 	);
 	outline = engine::Tex2d(
-		IMG_LoadTexture_RW(renderer, SDL_RWFromConstMem(debug_controller_outline_png, debug_controller_outline_png_size), 1),
+		IMG_LoadTexture_RW(renderer, SDL_RWFromConstMem(DEBUG_CONTROLLER_OUTLINE_PNG, DEBUG_CONTROLLER_OUTLINE_PNG_SIZE), 1),
 		x_position + 0.0f, y_position + 0.0f, 1.0f, 1.0f
 	);
-	button_start.Init(renderer, debug_controller_button_start_png, debug_controller_button_start_png_size, x_position + 121.0f, y_position + 114.0f);
-	button_a.Init(renderer, debug_controller_button_a_png, debug_controller_button_a_png_size, x_position + 192.0f, y_position + 108.0f);
-	button_b.Init(renderer, debug_controller_button_b_png, debug_controller_button_b_png_size, x_position + 170.0f, y_position + 131.0f);
-	button_x.Init(renderer, debug_controller_button_x_png, debug_controller_button_x_png_size, x_position + 219.0f, y_position + 102.0f);
-	button_y.Init(renderer, debug_controller_button_y_png, debug_controller_button_y_png_size, x_position + 185.0f, y_position + 83.0f);
-	button_z.Init(renderer, debug_controller_button_z_png, debug_controller_button_z_png_size, x_position + 182.0f, y_position + 42.0f);
-	direction_up.Init(renderer, debug_controller_direction_up_png, debug_controller_direction_up_png_size, x_position + 78.0f, y_position + 158.0f);
-	direction_down.Init(renderer, debug_controller_direction_down_png, debug_controller_direction_down_png_size, x_position + 78.0f, y_position + 182.0f);
-	direction_left.Init(renderer, debug_controller_direction_left_png, debug_controller_direction_left_png_size, x_position + 67.0f, y_position + 171.0f);
-	direction_right.Init(renderer, debug_controller_direction_right_png, debug_controller_direction_right_png_size, x_position + 89.0f, y_position + 171.0f);
-	stick_left.Init(renderer, debug_controller_stick_left_png, debug_controller_stick_left_png_size, x_position + 17.0f, y_position + 94.0f);
-	stick_right.Init(renderer, debug_controller_stick_right_png, debug_controller_stick_right_png_size, x_position + 154.0f, y_position + 163.0f);
-	trigger_l.Init(renderer, debug_controller_trigger_l_png, debug_controller_trigger_l_png_size, x_position + 13.0f, y_position + 39.5f);
-	trigger_r.Init(renderer, debug_controller_trigger_r_png, debug_controller_trigger_r_png_size, x_position + 182.0f, y_position + 37.5f);
+	button_start.Init(renderer, DEBUG_CONTROLLER_BUTTON_START_PNG, DEBUG_CONTROLLER_BUTTON_START_PNG_SIZE, x_position + 121.0f, y_position + 114.0f);
+	button_a.Init(renderer, DEBUG_CONTROLLER_BUTTON_A_PNG, DEBUG_CONTROLLER_BUTTON_A_PNG_SIZE, x_position + 192.0f, y_position + 108.0f);
+	button_b.Init(renderer, DEBUG_CONTROLLER_BUTTON_B_PNG, DEBUG_CONTROLLER_BUTTON_B_PNG_SIZE, x_position + 170.0f, y_position + 131.0f);
+	button_x.Init(renderer, DEBUG_CONTROLLER_BUTTON_X_PNG, DEBUG_CONTROLLER_BUTTON_X_PNG_SIZE, x_position + 219.0f, y_position + 102.0f);
+	button_y.Init(renderer, DEBUG_CONTROLLER_BUTTON_Y_PNG, DEBUG_CONTROLLER_BUTTON_Y_PNG_SIZE, x_position + 185.0f, y_position + 83.0f);
+	button_z.Init(renderer, DEBUG_CONTROLLER_BUTTON_Z_PNG, DEBUG_CONTROLLER_BUTTON_Z_PNG_SIZE, x_position + 182.0f, y_position + 42.0f);
+	direction_up.Init(renderer, DEBUG_CONTROLLER_DIRECTION_UP_PNG, DEBUG_CONTROLLER_DIRECTION_UP_PNG_SIZE, x_position + 78.0f, y_position + 158.0f);
+	direction_down.Init(renderer, DEBUG_CONTROLLER_DIRECTION_DOWN_PNG, DEBUG_CONTROLLER_DIRECTION_DOWN_PNG_SIZE, x_position + 78.0f, y_position + 182.0f);
+	direction_left.Init(renderer, DEBUG_CONTROLLER_DIRECTION_LEFT_PNG, DEBUG_CONTROLLER_DIRECTION_LEFT_PNG_SIZE, x_position + 67.0f, y_position + 171.0f);
+	direction_right.Init(renderer, DEBUG_CONTROLLER_DIRECTION_RIGHT_PNG, DEBUG_CONTROLLER_DIRECTION_RIGHT_PNG_SIZE, x_position + 89.0f, y_position + 171.0f);
+	stick_left.Init(renderer, DEBUG_CONTROLLER_STICK_LEFT_PNG, DEBUG_CONTROLLER_STICK_LEFT_PNG_SIZE, x_position + 17.0f, y_position + 94.0f);
+	stick_right.Init(renderer, DEBUG_CONTROLLER_STICK_RIGHT_PNG, DEBUG_CONTROLLER_STICK_RIGHT_PNG_SIZE, x_position + 154.0f, y_position + 163.0f);
+	trigger_l.Init(renderer, DEBUG_CONTROLLER_TRIGGER_L_PNG, DEBUG_CONTROLLER_TRIGGER_L_PNG_SIZE, x_position + 13.0f, y_position + 39.5f);
+	trigger_r.Init(renderer, DEBUG_CONTROLLER_TRIGGER_R_PNG, DEBUG_CONTROLLER_TRIGGER_R_PNG_SIZE, x_position + 182.0f, y_position + 37.5f);
 
 	stick_left.show = true;
 	stick_right.show = true;

@@ -5,10 +5,6 @@
 #include <SDL2/SDL_image.h>
 
 
-// Local library includes
-#include "imgui.h"
-
-
 namespace utils {
 
 

@@ -6,7 +6,7 @@
 
 
 // Local source includes
-#include "engine/tex_2d.hpp"
+#include "tex_2d.hpp"
 
 
 namespace utils {

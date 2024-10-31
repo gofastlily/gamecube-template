@@ -2,7 +2,7 @@
 
 
 // Local source includes
-#include "engine/entities/entity.hpp"
+#include "entities/entity.hpp"
 
 
 namespace engine {

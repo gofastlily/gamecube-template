@@ -2,8 +2,8 @@
 
 
 // Local source includes
-#include "engine/vector2.hpp"
-#include "engine/entities/entity.hpp"
+#include "vector2.hpp"
+#include "entities/entity.hpp"
 
 
 namespace engine {

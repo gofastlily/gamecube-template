@@ -1,4 +1,4 @@
-#include "input/button.hpp"
+#include "button.hpp"
 
 
 namespace input {

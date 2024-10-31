@@ -2,8 +2,8 @@
 
 
 // Local library includes
-#include "engine/entities/entity.hpp"
-#include "input/axis.hpp"
+#include "entities/entity.hpp"
+#include "axis.hpp"
 
 
 namespace input {

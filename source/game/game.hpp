@@ -6,7 +6,7 @@
 
 
 // Local source includes
-#include "input/input.hpp"
+#include "input.hpp"
 
 
 namespace game {

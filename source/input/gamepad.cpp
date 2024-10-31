@@ -1,4 +1,4 @@
-#include "input/gamepad.hpp"
+#include "gamepad.hpp"
 
 
 // Local library includes

@@ -11,3 +11,10 @@ This template provides a base for developing for the Nintendo GameCube.
 - `gamecube-dev`
 - `gamecube-portlibs`
 - `ppc-portlibs`
+
+
+# Build with CMake
+
+```
+> $DEVKITPRO/portlibs/gamecube/bin/powerpc-eabi-cmake -S . -B build
+```

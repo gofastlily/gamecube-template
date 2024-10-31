@@ -7,7 +7,7 @@
 
 // Local library includes
 #include "constants.hpp"
-#include "engine/entities/entity.hpp"
+#include "entity.hpp"
 
 
 namespace input {

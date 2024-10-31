@@ -5,10 +5,10 @@
 #include <SDL2/SDL.h>
 
 
-// Local library includes
+// Local source includes
 #include "constants.hpp"
-#include "engine/entities/entity.hpp"
-#include "input/gamepad.hpp"
+#include "entities/entity.hpp"
+#include "gamepad.hpp"
 
 
 namespace input {

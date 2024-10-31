@@ -7,8 +7,8 @@
 
 // Local source includes
 #include "constants.hpp"
-#include "input/input.hpp"
-#include "utils/debug_controllers/debug_controller.hpp"
+#include "input.hpp"
+#include "debug_controllers/debug_controller.hpp"
 
 
 namespace utils {

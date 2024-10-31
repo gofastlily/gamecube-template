@@ -1,4 +1,4 @@
-#include "input/axis.hpp"
+#include "axis.hpp"
 
 
 // Standard library includes
@@ -6,7 +6,7 @@
 
 
 // Local library includes
-#include "utils/utils.hpp"
+#include "utils.hpp"
 
 
 namespace input {

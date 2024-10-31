@@ -30,7 +30,7 @@
 #include "constants.hpp"
 #include "engine/delta_time.hpp"
 #include "engine/text.hpp"
-#include "game.hpp"
+#include "game/game.hpp"
 #include "utils/framerate.hpp"
 #include "utils/utils.hpp"
 #include "utils/debug_controllers/manager.hpp"
@@ -43,7 +43,6 @@
 int SDL_main(int argc, char **argv) {
 	(void) argc;
 	(void) argv;
-
 
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER | SDL_INIT_HAPTIC) < 0) {
@@ -98,16 +97,16 @@ int SDL_main(int argc, char **argv) {
 	utils::Framerate framerate = utils::Framerate(io);
 	utils::debug_controllers::Manager debug_controllers_manager = utils::debug_controllers::Manager();
 	debug_controllers_manager.Init(renderer);
-	bool show_main_debug_ui = false;
+	bool show_main_debug_ui = true;
 
 
-	SDL_RWops* font_raw = SDL_RWFromConstMem(josefin_sans_regular_ttf, josefin_sans_regular_ttf_size);
+	SDL_RWops* font_raw = SDL_RWFromConstMem(JOSEFIN_SANS_REGULAR_TTF, JOSEFIN_SANS_REGULAR_TTF_SIZE);
 	TTF_Font* font = TTF_OpenFontRW(font_raw, 1, 24);
 	engine::Text ui_prompt_text = engine::Text(
 		renderer,
 		"Press L and the D-Pad to toggle debug UI",
 		font,
-		SDL_Color(220, 220, 220),
+		SDL_Color(220, 220, 220, 255),
 		SCREEN_WIDTH / 10.0f * 8.0f
 	);
 

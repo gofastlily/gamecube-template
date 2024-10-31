@@ -6,8 +6,9 @@
 
 
 // Local source includes
-#include "input/gamepad.hpp"
-#include "engine/tex_2d.hpp"
+#include "constants.hpp"
+#include "gamepad.hpp"
+#include "tex_2d.hpp"
 #include "debug_controller_input.hpp"
 
 

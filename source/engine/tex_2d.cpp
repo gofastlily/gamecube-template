@@ -1,8 +1,4 @@
-#include "engine/tex_2d.hpp"
-
-
-// Local library includes
-#include "imgui.h"
+#include "tex_2d.hpp"
 
 
 namespace engine {

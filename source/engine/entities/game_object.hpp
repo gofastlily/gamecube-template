@@ -7,9 +7,9 @@
 
 // Local source includes
 #include "constants.hpp"
-#include "engine/entities/entity.hpp"
-#include "engine/vector2.hpp"
-#include "engine/transform2d.hpp"
+#include "entities/entity.hpp"
+#include "vector2.hpp"
+#include "transform2d.hpp"
 
 
 namespace engine {

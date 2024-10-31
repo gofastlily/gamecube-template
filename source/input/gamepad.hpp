@@ -5,11 +5,12 @@
 #include <SDL2/SDL.h>
 
 
-// Local library includes
-#include "engine/entities/entity.hpp"
-#include "input/axis.hpp"
-#include "input/button.hpp"
-#include "input/stick.hpp"
+// Local source includes
+#include "constants.hpp"
+#include "entities/entity.hpp"
+#include "axis.hpp"
+#include "button.hpp"
+#include "stick.hpp"
 
 
 namespace input {
