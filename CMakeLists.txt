@@ -65,6 +65,9 @@ add_subdirectory("${PROJECT_SOURCE_DIR}/source/input")
 add_subdirectory("${PROJECT_SOURCE_DIR}/source/utils")
 add_subdirectory("${PROJECT_SOURCE_DIR}/source/game")
 
+# Add optional source includes
+add_subdirectory("${PROJECT_SOURCE_DIR}/source/utils/debug_controllers")
+
 # Add the executable
 add_executable(${PROJECT_NAME}
 	${PROJECT_SOURCE_DIR}/source/main.cpp
@@ -76,12 +79,18 @@ target_include_directories(${PROJECT_NAME} INTERFACE
 
 target_link_libraries(${PROJECT_NAME} PUBLIC compiler_flags)
 
+# Required source includes
 target_link_libraries(${PROJECT_NAME} PUBLIC
 	Engine
 	Input
 	Utils
 	Fonts
 	Game
+)
+
+# Optional source includes
+target_link_libraries(${PROJECT_NAME} PUBLIC
+	DebugControllers
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
