@@ -27,6 +27,7 @@ file(GLOB debug_controller_assets_files CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}
 dkp_add_embedded_binary_library(debug_controller_assets ${debug_controller_assets_files})
 
 # Find required packages
+find_package(GLU REQUIRED)
 find_package(SDL2 REQUIRED CONFIG COMPONENTS SDL2-static)
 find_package(SDL2 CONFIG COMPONENTS SDL2main)
 find_package(SDL2_image REQUIRED)
@@ -73,6 +74,7 @@ if(TARGET SDL2::SDL2main)
 endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
+	GLU
 	SDL2::SDL2-static
 	SDL2_ttf::SDL2_ttf-static
 	SDL2_image::SDL2_image-static
