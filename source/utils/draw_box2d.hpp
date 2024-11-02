@@ -23,6 +23,11 @@ class DrawBox2d : public b2Draw {
 		void DrawSegment(const b2Vec2&, const b2Vec2&, const b2Color&) override;
 		void DrawTransform(const b2Transform&) override;
 		void DrawPoint(const b2Vec2&, float, const b2Color&) override;
+		SDL_Color Box2dColorToSDLColor(const b2Color&);
+		float pixels_per_meter;
+		int MeterToPixel(const float);
+		b2Vec2 MeterToPixel(const b2Vec2&);
+		float PixelToMeter(const int);
 };
 
 

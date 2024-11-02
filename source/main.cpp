@@ -16,6 +16,7 @@
 
 
 // Local library includes
+#include "box2d.h"
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
 #include "imgui_impl_sdlrenderer2.h"
@@ -142,6 +143,25 @@ int SDL_main(int argc, char **argv) {
 			ImGui::Text("Written using SDL2, Dear ImGui, and Box2D\nfor the Nintendo GameCube");
 			ImGui::Separator();
 			ImGui::Text("C++ Standard: %s", utils::Utils::CppStandard());
+			ImGui::Separator();
+			ImGui::Text("Box2D - Test Box");
+			ImGui::Text("Position and Angle: %.2f %.2f %.2f", game.characterBody->GetPosition().x, game.characterBody->GetPosition().y, game.characterBody->GetAngle());
+			ImGui::Text("AABB: %.2f, %.2f, %.2f, %.2f",
+				game.characterBody->GetFixtureList()->GetAABB(0).upperBound.x,
+				game.characterBody->GetFixtureList()->GetAABB(0).upperBound.y,
+				game.characterBody->GetFixtureList()->GetAABB(0).lowerBound.x,
+				game.characterBody->GetFixtureList()->GetAABB(0).lowerBound.y
+			);
+			ImGui::Separator();
+			ImGui::Text("Box2D - Ground Box");
+			ImGui::Text("Position and Angle: %.2f %.2f %.2f", game.groundBody->GetPosition().x, game.groundBody->GetPosition().y, game.groundBody->GetAngle());
+			ImGui::Text("AABB: %.2f, %.2f, %.2f, %.2f",
+				game.groundBody->GetFixtureList()->GetAABB(0).upperBound.x,
+				game.groundBody->GetFixtureList()->GetAABB(0).upperBound.y,
+				game.groundBody->GetFixtureList()->GetAABB(0).lowerBound.x,
+				game.groundBody->GetFixtureList()->GetAABB(0).lowerBound.y
+			);
+
 			ImGui::End();
 		}
 
@@ -149,6 +169,7 @@ int SDL_main(int argc, char **argv) {
 		// Clear the screen to render this frame
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 		SDL_RenderClear(renderer);
+
 
 		// Render here
 		game.Render(renderer);
