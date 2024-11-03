@@ -10,4 +10,6 @@ target_include_directories(Utils INTERFACE
 target_link_libraries(Utils PUBLIC
 	compiler_flags
 	ImGui
+	general_assets
+	debug_controller_assets
 )
