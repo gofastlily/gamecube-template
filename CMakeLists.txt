@@ -18,14 +18,14 @@ target_include_directories(Constants INTERFACE "${PROJECT_SOURCE_DIR}/constants"
 #
 
 # Fonts
-file(GLOB font_files  "${PROJECT_SOURCE_DIR}/data/fonts/*.ttf")
+file(GLOB font_files CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/data/fonts/*.ttf")
 dkp_add_embedded_binary_library(fonts ${font_files})
 
 # General
-file(GLOB general_assets_files "${PROJECT_SOURCE_DIR}/data/*.png")
+file(GLOB general_assets_files CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/data/*.png")
 dkp_add_embedded_binary_library(general_assets ${general_assets_files})
 # Debug Controller Assets
-file(GLOB debug_controller_assets_files "${PROJECT_SOURCE_DIR}/data/debug_controller/*.png")
+file(GLOB debug_controller_assets_files CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/data/debug_controller/*.png")
 dkp_add_embedded_binary_library(debug_controller_assets ${debug_controller_assets_files})
 
 
