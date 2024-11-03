@@ -33,13 +33,9 @@ dkp_add_embedded_binary_library(debug_controller_assets ${debug_controller_asset
 # End binary assets
 ###
 
-
-# Find required packages - doesn't work :/
-#find_package(SDL2 REQUIRED CONFIG COMPONENTS SDL2 SDL2_image SDL2_mixer SDL2_ttf)
-#find_package(SDL2 REQUIRED CONFIG COMPONENTS SDL2main)
-
-# Find required packages - does work, meh
-find_package(SDL2 REQUIRED)
+# Find required packages
+find_package(SDL2 REQUIRED CONFIG COMPONENTS SDL2-static)
+find_package(SDL2 CONFIG COMPONENTS SDL2main)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_mixer REQUIRED)
 find_package(SDL2_ttf REQUIRED)
@@ -77,12 +73,17 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 	DebugControllers
 )
 
+# SDL2::SDL2main may or may not be available. It is e.g. required by Windows GUI applications
+if(TARGET SDL2::SDL2main)
+    # It has an implicit dependency on SDL2 functions, so it MUST be added before SDL2::SDL2 (or SDL2::SDL2-static)
+    target_link_libraries(${PROJECT_NAME} PRIVATE SDL2::SDL2main)
+endif()
+
 target_link_libraries(${PROJECT_NAME} PRIVATE
-	SDL2::SDL2
-	SDL2::SDL2main
-	SDL2_ttf
-	SDL2_image
-	SDL2_mixer
+	SDL2::SDL2-static
+	SDL2_ttf::SDL2_ttf-static
+	SDL2_image::SDL2_image-static
+	SDL2_mixer::SDL2_mixer-static
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -98,10 +99,6 @@ target_include_directories(ImGui PUBLIC ${IMGUI_PATH})
 target_link_libraries(ImGui PUBLIC
 	${SDL2_LIBRARIES}
 )
-
-
-find_package(Freetype REQUIRED)
-
 
 # Helper to create the .dol file
 ogc_create_dol(${PROJECT_NAME})
