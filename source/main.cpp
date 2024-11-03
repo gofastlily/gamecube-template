@@ -3,12 +3,6 @@
  */
 
 
-// #define DEBUG true
-#ifdef DEBUG
-#include <debug.h>
-#endif
-
-
 // Standard library includes
 #include <iostream>
 #include <stdio.h>
@@ -77,14 +71,6 @@ int SDL_main(int argc, char **argv) {
 	ImGui::StyleColorsDark();
 	ImGui_ImplSDL2_InitForSDLRenderer(window, renderer);
 	ImGui_ImplSDLRenderer2_Init(renderer);
-
-
-#ifdef DEBUG
-	DEBUG_Init(GDBSTUB_DEVICE_USB, 1);	// USBGecko in Slot B
-	printf("Waiting for debugger ...\n");	// Explore using Dear ImGui here
-	_break();	// Enters debug stub, required for gdb debugging
-	printf("debugger connected ...\n");	// Explore using Dear ImGui here
-#endif
 
 
 	// Initialize Game
