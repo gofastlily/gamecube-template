@@ -14,6 +14,6 @@ target_link_libraries(DebugControllers PUBLIC
 	Constants
 	Engine
 	Input
-	GeneralAssets
-	DebugControllerAssets
+	general_assets
+	debug_controller_assets
 )

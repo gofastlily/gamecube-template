@@ -100,7 +100,7 @@ int SDL_main(int argc, char **argv) {
 	bool show_main_debug_ui = true;
 
 
-	SDL_RWops* font_raw = SDL_RWFromConstMem(JOSEFIN_SANS_REGULAR_TTF, JOSEFIN_SANS_REGULAR_TTF_SIZE);
+	SDL_RWops* font_raw = SDL_RWFromConstMem(josefin_sans_regular_ttf, josefin_sans_regular_ttf_size);
 	TTF_Font* font = TTF_OpenFontRW(font_raw, 1, 24);
 	engine::Text ui_prompt_text = engine::Text(
 		renderer,
