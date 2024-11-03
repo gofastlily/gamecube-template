@@ -8,7 +8,7 @@ target_include_directories(Entities INTERFACE
 
 target_link_libraries(Entities PUBLIC
 	compiler_flags
-	SDL2::SDL2
+	SDL2::SDL2-static
 	Constants
 	Engine
 )

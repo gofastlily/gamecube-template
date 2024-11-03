@@ -8,6 +8,6 @@ target_include_directories(Game INTERFACE
 
 target_link_libraries(Game PUBLIC
 	compiler_flags
-	SDL2::SDL2
+	SDL2::SDL2-static
 	Input
 )

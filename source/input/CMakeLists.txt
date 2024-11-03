@@ -12,7 +12,7 @@ target_include_directories(Input INTERFACE
 
 target_link_libraries(Input PUBLIC
 	compiler_flags
-	${SDL2_LIBRARIES}
+	SDL2::SDL2-static
 	Constants
 	Entities
 	Utils

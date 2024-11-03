@@ -11,4 +11,7 @@ target_include_directories(Engine INTERFACE
 
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/entities")
 
-target_link_libraries(Engine PUBLIC Entities compiler_flags)
+target_link_libraries(Engine PUBLIC
+	compiler_flags
+	Entities
+)

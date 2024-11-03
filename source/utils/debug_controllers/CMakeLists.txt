@@ -10,7 +10,7 @@ target_include_directories(DebugControllers INTERFACE
 
 target_link_libraries(DebugControllers PUBLIC
 	compiler_flags
-	${SDL2_LIBRARIES}
+	SDL2::SDL2-static
 	Constants
 	Engine
 	Input

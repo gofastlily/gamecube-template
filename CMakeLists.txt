@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.13)
 project(GameCubeTemplate
 	VERSION 0.1.0
 	DESCRIPTION "Template to build games for the Nintendo GameCube"
-	LANGUAGES C CXX)
+	LANGUAGES C CXX
+)
 
 # specify the C++ standard
 add_library(compiler_flags INTERFACE)
@@ -13,25 +14,17 @@ target_compile_features(compiler_flags INTERFACE cxx_std_20)
 add_library(Constants INTERFACE)
 target_include_directories(Constants INTERFACE "${PROJECT_SOURCE_DIR}/constants")
 
-###
-# Prepare binary assets early
-#
-
 # Fonts
 file(GLOB font_files CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/data/fonts/*.ttf")
 dkp_add_embedded_binary_library(fonts ${font_files})
 
-# General
+# General assets
 file(GLOB general_assets_files CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/data/*.png")
 dkp_add_embedded_binary_library(general_assets ${general_assets_files})
-# Debug Controller Assets
+
+# Debug controller assets
 file(GLOB debug_controller_assets_files CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/data/debug_controller/*.png")
 dkp_add_embedded_binary_library(debug_controller_assets ${debug_controller_assets_files})
-
-
-#
-# End binary assets
-###
 
 # Find required packages
 find_package(SDL2 REQUIRED CONFIG COMPONENTS SDL2-static)
@@ -97,7 +90,7 @@ file(GLOB IMGUI_SOURCES ${IMGUI_PATH}/*.cpp)
 add_library(ImGui STATIC ${IMGUI_SOURCES})
 target_include_directories(ImGui PUBLIC ${IMGUI_PATH})
 target_link_libraries(ImGui PUBLIC
-	${SDL2_LIBRARIES}
+	SDL2::SDL2-static
 )
 
 # Helper to create the .dol file

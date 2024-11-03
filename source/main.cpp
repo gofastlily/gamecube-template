@@ -156,6 +156,7 @@ int SDL_main(int argc, char **argv) {
 
 		framerate.Display();	// Framerate is show here as to appear above any other element
 
+
 		ImGui::Render();	// Rendering of Dear ImGui must happen last to ensure proper visibility
 		ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData());
 		SDL_RenderPresent(renderer);
