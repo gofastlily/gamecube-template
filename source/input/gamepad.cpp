@@ -124,6 +124,9 @@ void Gamepad::Disconnect() {
 
 
 bool Gamepad::IsConnected() {
+	if (!controller) {
+		return false;
+	}
 	return SDL_GameControllerGetAttached(controller);
 }
 

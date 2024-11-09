@@ -10,6 +10,7 @@
 
 
 // Linked library includes
+#include <ogc/system.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
@@ -37,6 +38,12 @@
 int SDL_main(int argc, char **argv) {
 	(void) argc;
 	(void) argv;
+
+
+	// Redirect stdio and stderr to UART
+	SYS_STDIO_Report(true);
+	printf("Starting game\r");
+
 
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER | SDL_INIT_HAPTIC) < 0) {
@@ -68,6 +75,7 @@ int SDL_main(int argc, char **argv) {
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;	// Enable Gamepad Controls
+	io.ConfigFlags |= ImGuiConfigFlags_NoMouse;	// Disable mouse input
 	ImGui::StyleColorsDark();
 	ImGui_ImplSDL2_InitForSDLRenderer(window, renderer);
 	ImGui_ImplSDLRenderer2_Init(renderer);
