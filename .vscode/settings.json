@@ -4,5 +4,6 @@
     "[cpp]": {
         "editor.insertSpaces": false,
         "editor.tabSize": 4
-    }
+    },
+    "cmake.cmakePath": "/opt/devkitpro/portlibs/gamecube/bin/powerpc-eabi-cmake"
 }
