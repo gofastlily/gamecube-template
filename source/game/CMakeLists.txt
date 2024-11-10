@@ -1,5 +1,7 @@
 add_library(Game
 	game.cpp
+	projectile.cpp
+	ship.cpp
 )
 
 target_include_directories(Game INTERFACE
@@ -10,4 +12,9 @@ target_link_libraries(Game PUBLIC
 	compiler_flags
 	SDL2::SDL2-static
 	Input
+)
+
+target_link_libraries(Game PUBLIC
+	player_ship_assets
+	projectiles_assets
 )

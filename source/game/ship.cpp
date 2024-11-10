@@ -1,4 +1,4 @@
-#include "game/ship.hpp"
+#include "ship.hpp"
 
 
 // Standard library includes
@@ -10,7 +10,7 @@
 
 
 // Local source includes
-#include "utils/utils.hpp"
+#include "utils.hpp"
 
 
 // Local asset includes

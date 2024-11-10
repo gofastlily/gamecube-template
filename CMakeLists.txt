@@ -26,6 +26,14 @@ dkp_add_embedded_binary_library(general_assets ${general_assets_files})
 file(GLOB debug_controller_assets_files CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/data/debug_controller/*.png")
 dkp_add_embedded_binary_library(debug_controller_assets ${debug_controller_assets_files})
 
+# Player ship assets
+file(GLOB player_ship_assets_files CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/data/player_ship/*.png")
+dkp_add_embedded_binary_library(player_ship_assets ${player_ship_assets_files})
+
+# Projectiles assets
+file(GLOB projectiles_assets_files CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/data/projectiles/*.png")
+dkp_add_embedded_binary_library(projectiles_assets ${projectiles_assets_files})
+
 # Find required packages
 find_package(SDL2 REQUIRED CONFIG COMPONENTS SDL2-static)
 find_package(SDL2 CONFIG COMPONENTS SDL2main)
@@ -83,6 +91,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 	fonts
 	general_assets
 	debug_controller_assets
+	player_ship_assets
+	projectiles_assets
 )
 
 set(IMGUI_PATH "${PROJECT_SOURCE_DIR}/libraries/imgui")

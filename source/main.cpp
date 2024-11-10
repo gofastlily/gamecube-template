@@ -26,9 +26,9 @@
 #include "engine/delta_time.hpp"
 #include "engine/text.hpp"
 #include "game/game.hpp"
-#include "utils/framerate.hpp"
-#include "utils/utils.hpp"
-#include "utils/debug_controllers/manager.hpp"
+#include "framerate.hpp"
+#include "utils.hpp"
+#include "debug_controllers/manager.hpp"
 
 
 // Local asset includes

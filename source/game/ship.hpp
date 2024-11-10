@@ -11,13 +11,13 @@
 
 // Local source includes
 #include "constants.hpp"
-#include "engine/tex_2d.hpp"
-#include "engine/entities/game_object.hpp"
-#include "input/gamepad.hpp"
+#include "tex_2d.hpp"
+#include "entities/game_object.hpp"
+#include "gamepad.hpp"
 
 
 // Game includes
-#include "game/projectile.hpp"
+#include "projectile.hpp"
 
 
 namespace game {

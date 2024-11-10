@@ -1,4 +1,4 @@
-#include "game/projectile.hpp"
+#include "projectile.hpp"
 
 
 // Linked library includes

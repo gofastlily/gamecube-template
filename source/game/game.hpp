@@ -10,7 +10,7 @@
 
 
 // Game includes
-#include "game/ship.hpp"
+#include "ship.hpp"
 
 
 namespace game {

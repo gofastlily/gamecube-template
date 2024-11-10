@@ -3,7 +3,7 @@
 
 // Local source includes
 #include "constants.hpp"
-#include "game/ship.hpp"
+#include "ship.hpp"
 
 
 namespace game {
